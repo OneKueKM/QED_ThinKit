@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">1021938121029-r5llrhu4u71vmo9v527lvfq5vfv12io9.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">1021938121029</string>
+    <string name="google_api_key" translatable="false">AIzaSyD1uvm0uz6RcxdLqV1cB-_VREZUtgXcXIM</string>
+    <string name="google_app_id" translatable="false">1:1021938121029:android:9a055abdce43eaf0c7662c</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyD1uvm0uz6RcxdLqV1cB-_VREZUtgXcXIM</string>
+    <string name="google_storage_bucket" translatable="false">thin-kit-999.appspot.com</string>
+    <string name="project_id" translatable="false">thin-kit-999</string>
+</resources>

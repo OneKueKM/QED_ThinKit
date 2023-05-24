@@ -203,7 +203,7 @@ class _ProfileTapState extends State<ProfileTap> {
                                 image: DecorationImage(
                                     fit: BoxFit.fitHeight,
                                     image: NetworkImage(
-                                        'https://image.zdnet.co.kr/2023/03/09/356dff25278b5a49593defb99b15eade.jpg'))),
+                                        userInfo!['userProfile']))),
                           ),
                         )),
                   ),

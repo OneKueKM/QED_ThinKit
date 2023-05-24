@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/kmin/Downloads/thin_kit v6.0.3/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/Users/kmin/Desktop/QED_ThinKit/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
                 {
-                    "source": "/Users/kmin/Downloads/thin_kit v6.0.3/build/app/generated/res/google-services/debug/values/values.xml",
+                    "source": "/Users/kmin/Desktop/QED_ThinKit/build/app/generated/res/google-services/debug/values/values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8",
                         "startColumns": "4,4,4,4,4,4,4",
@@ -254,7 +254,7 @@
                     }
                 },
                 {
-                    "source": "/Users/kmin/Downloads/thin_kit v6.0.3/android/app/src/main/res/values/styles.xml",
+                    "source": "/Users/kmin/Desktop/QED_ThinKit/android/app/src/main/res/values/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

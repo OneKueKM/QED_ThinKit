@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/kmin/Downloads/thin_kit v6.0.3/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rHK/values-zh-rHK.xml",
+            "outputFile": "/Users/kmin/Desktop/QED_ThinKit/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rHK/values-zh-rHK.xml",
             "map": [
                 {
                     "source": "/Users/kmin/.gradle/caches/transforms-3/01df39206c5229867ce857680d593f4b/transformed/appcompat-1.3.0/res/values-zh-rHK/values-zh-rHK.xml",

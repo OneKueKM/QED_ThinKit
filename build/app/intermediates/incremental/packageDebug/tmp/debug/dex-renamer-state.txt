@@ -1,9 +1,9 @@
-#Sat May 20 14:04:44 KST 2023
-base.2=/Users/kmin/Downloads/thin_kit v6.0.3/build/app/intermediates/dex/debug/mergeDexDebug/classes3.dex
+#Wed May 24 21:42:58 KST 2023
+base.2=/Users/kmin/Desktop/QED_ThinKit/build/app/intermediates/dex/debug/mergeDexDebug/classes3.dex
 path.2=classes3.dex
-base.1=/Users/kmin/Downloads/thin_kit v6.0.3/build/app/intermediates/dex/debug/mergeDexDebug/classes2.dex
+base.1=/Users/kmin/Desktop/QED_ThinKit/build/app/intermediates/dex/debug/mergeDexDebug/classes2.dex
 path.1=classes2.dex
-base.0=/Users/kmin/Downloads/thin_kit v6.0.3/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+base.0=/Users/kmin/Desktop/QED_ThinKit/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex

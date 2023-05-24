@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/kmin/Downloads/thin_kit v6.0.3/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-et/values-et.xml",
+            "outputFile": "/Users/kmin/Desktop/QED_ThinKit/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-et/values-et.xml",
             "map": [
                 {
                     "source": "/Users/kmin/.gradle/caches/transforms-3/c1fa4d1efc5a3d7c89550548569aa73b/transformed/jetified-play-services-basement-18.1.0/res/values-et/values.xml",

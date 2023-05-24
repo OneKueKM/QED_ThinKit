@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/kmin/Downloads/thin_kit v6.0.3/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-fr/values-fr.xml",
+            "outputFile": "/Users/kmin/Desktop/QED_ThinKit/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-fr/values-fr.xml",
             "map": [
                 {
                     "source": "/Users/kmin/.gradle/caches/transforms-3/ee317980aaafe24840cc30bb9da0c4cc/transformed/jetified-ucrop-2.2.8/res/values-fr/values-fr.xml",

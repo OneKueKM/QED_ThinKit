@@ -31,7 +31,7 @@ class FriendListCard extends StatelessWidget {
               onPressed: (context) =>
                   friendInfo.reference.update({'favorites': true}),
               backgroundColor: Colors.white,
-              foregroundColor: const Color.fromARGB(255, 255, 255, 255),
+              foregroundColor: const Color.fromARGB(255, 255, 0, 100),
               autoClose: true,
               icon: TablerIcons.heart,
             ),

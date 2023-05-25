@@ -52,7 +52,9 @@ class _MyAppState extends State<AccountScreen> {
                             snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const Center(
-                          child: CircularProgressIndicator(),
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
                         );
                       }
 

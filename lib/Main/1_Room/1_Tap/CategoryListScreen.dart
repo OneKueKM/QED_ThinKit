@@ -5,7 +5,7 @@ import 'package:qed_app_thinkit/Main/1_Room/1_Widget/MajorRoomBox.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:qed_app_thinkit/InternalTodoScreen/CategoryTypeScreen.dart';
-import '../../../InternalTodoScreen/FinanceCalListScreen.dart';
+import '../../../InternalTodoScreen/FinanceCalScreen.dart';
 import '../../../InternalTodoScreen/FinanceListScreen.dart';
 import '../../../InternalTodoScreen/NewChecklistScreen.dart';
 import 'package:qed_app_thinkit/Main/1_Room/1_Widget/MinorRoomBox.dart';
@@ -190,7 +190,7 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => FinanceCalListScreen(
+                                builder: (context) => FinanceCalScreen(
                                     title: cateArray[index]['title'],
                                     financeCalID: cateArray[index].id),
                               ),

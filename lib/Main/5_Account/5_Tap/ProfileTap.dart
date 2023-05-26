@@ -102,9 +102,9 @@ class _ProfileTapState extends State<ProfileTap> {
     final ImagePicker picker = ImagePicker();
     XFile? imageFile = await picker.pickImage(
       source: imageSource,
-      maxHeight: 300,
-      maxWidth: 300,
-      imageQuality: 30,
+      maxHeight: 500,
+      maxWidth: 500,
+      imageQuality: 100,
     );
     if (imageFile != null) {
       pickedImage = File(imageFile.path);
@@ -136,200 +136,204 @@ class _ProfileTapState extends State<ProfileTap> {
     return Scaffold(
         body: Form(
       key: _formKey,
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-        child: Column(
-          children: [
-            SizedBox(height: 50),
-            SizedBox(
-              child: GestureDetector(
-                onTap: () => showCupertinoModalPopup(
-                    context: context,
-                    builder: (context) => CupertinoActionSheet(
-                          title: const Text("프로필 사진 설정"),
-                          actions: [
-                            CupertinoActionSheetAction(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                  uploadImage(ImageSource.gallery);
-                                },
-                                child: const Text("엘범에서 사진 선택")),
-                            CupertinoActionSheetAction(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                  uploadImage(ImageSource.camera);
-                                },
-                                child: const Text("카메라로 찍어서 선택")),
-                            CupertinoActionSheetAction(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                  changeToBasicImage();
-                                },
-                                child: const Text("기본 이미지 선택")),
-                          ],
-                        )),
-                child: Hero(
-                    tag: 'ProfileImage',
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(22),
-                      child: Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                fit: BoxFit.fitHeight,
-                                image: NetworkImage(userInfo!['userProfile']))),
-                      ),
-                    )),
-              ),
+      child: Column(
+        children: [
+          Container(
+            height: 350,
+            width: double.maxFinite,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    fit: BoxFit.fitWidth,
+                    image: NetworkImage(userInfo!['userProfile']))),
+          ),
+          SizedBox(
+            child: GestureDetector(
+              onTap: () => showCupertinoModalPopup(
+                  context: context,
+                  builder: (context) => CupertinoActionSheet(
+                        title: const Text("프로필 사진 설정"),
+                        actions: [
+                          CupertinoActionSheetAction(
+                              onPressed: () {
+                                Navigator.pop(context);
+                                uploadImage(ImageSource.gallery);
+                              },
+                              child: const Text("엘범에서 사진 선택")),
+                          CupertinoActionSheetAction(
+                              onPressed: () {
+                                Navigator.pop(context);
+                                uploadImage(ImageSource.camera);
+                              },
+                              child: const Text("카메라로 찍어서 선택")),
+                          CupertinoActionSheetAction(
+                              onPressed: () {
+                                Navigator.pop(context);
+                                changeToBasicImage();
+                              },
+                              child: const Text("기본 이미지 선택")),
+                        ],
+                      )),
+              child: Hero(
+                  tag: 'ProfileImage',
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(22),
+                    child: Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              fit: BoxFit.fitHeight,
+                              image: NetworkImage(userInfo!['userProfile']))),
+                    ),
+                  )),
             ),
-            const SizedBox(height: 10),
-            Row(children: const [
-              Text("이름",
-                  style: TextStyle(
-                      fontSize: 17,
-                      fontFamily: 'SDFText',
-                      fontWeight: FontWeight.w700))
-            ]),
-            SizedBox(
-              height: 25,
-              child: TextFormField(
-                  controller: _nameController,
-                  keyboardType: TextInputType.text,
-                  decoration: const InputDecoration(
-                    hintText: 'your name',
-                    hintStyle: TextStyle(
-                        fontSize: 13, fontFamily: 'SFPro', color: Colors.grey),
-                  ),
-                  validator: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Enter Your Name';
-                    }
-                    return null;
-                  }),
-            ),
-            const SizedBox(height: 5),
-            Row(children: const [
-              Text('user ID',
-                  style: TextStyle(
-                      fontSize: 17,
-                      fontFamily: 'SDFText',
-                      fontWeight: FontWeight.w700))
-            ]),
-            SizedBox(
-              height: 30,
-              child: TextFormField(
-                  controller: _idController,
-                  keyboardType: TextInputType.text,
-                  decoration: const InputDecoration(
-                    hintText: 'ID',
-                    hintStyle: TextStyle(
-                        fontSize: 13, fontFamily: 'SFPro', color: Colors.grey),
-                  ),
-                  validator: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Enter Your ID';
-                    }
-
-                    return null;
-                  }),
-            ),
-            const SizedBox(height: 5),
-            Row(children: const [
-              Text('설명',
-                  style: TextStyle(
-                      fontSize: 17,
-                      fontFamily: 'SDFText',
-                      fontWeight: FontWeight.w700))
-            ]),
-            SizedBox(
-              height: 30,
-              child: TextFormField(
-                controller: _explainController,
+          ),
+          const SizedBox(height: 10),
+          Row(children: const [
+            Text("이름",
+                style: TextStyle(
+                    fontSize: 17,
+                    fontFamily: 'SDFText',
+                    fontWeight: FontWeight.w700))
+          ]),
+          SizedBox(
+            height: 25,
+            child: TextFormField(
+                controller: _nameController,
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
-                  hintText: 'Please enter your Explains',
+                  hintText: 'your name',
                   hintStyle: TextStyle(
                       fontSize: 13, fontFamily: 'SFPro', color: Colors.grey),
                 ),
-              ),
-            ),
-            const SizedBox(height: 5),
-            Row(children: const [
-              Text('전화번호',
-                  style: TextStyle(
-                      fontSize: 17,
-                      fontFamily: 'SDFText',
-                      fontWeight: FontWeight.w700))
-            ]),
-            SizedBox(
-              height: 35,
-              child: TextFormField(
-                controller: _telnumController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  hintText: 'Enter Your Phone Number',
-                  hintStyle: TextStyle(
-                      fontSize: 13, fontFamily: 'SFPro', color: Colors.grey),
-                ),
-              ),
-            ),
-            const SizedBox(height: 5),
-            Row(children: const [
-              Text('이메일',
-                  style: TextStyle(
-                      fontSize: 17,
-                      fontFamily: 'SDFText',
-                      fontWeight: FontWeight.w700))
-            ]),
-            SizedBox(
-              height: 30,
-              child: TextFormField(
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    hintText: 'Enter Your Email',
-                    hintStyle: TextStyle(
-                        fontSize: 13, fontFamily: 'SFPro', color: Colors.grey),
-                  ),
-                  validator: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Enter Your Email';
-                    }
-                    return null;
-                  }),
-            ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-                onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    if (await isSomeoneisUsingID(_idController!.text)) {
-                      Get.snackbar('ID를 다시 입력하세요!', '누군가가 같은 ID를 이미 사용 중입니다.');
-                      return;
-                    } //아이디 중복 확인 필터 나중에 필요
-                    else {
-                      userDoc.update({
-                        'userName': _nameController!.text,
-                        'userID': _idController!.text,
-                        'userExplain': _explainController!.text,
-                        'telephoneNum': _telnumController!.text,
-                        'email': _emailController!.text,
-                      });
-                      me!.updateEmail(
-                          _emailController!.text); //이것으로도 메일이 바뀌지 않을 수 있음.
-                      if (!mounted) return;
-                      Navigator.pop(context);
-                    }
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Enter Your Name';
                   }
-                },
-                style: ElevatedButton.styleFrom(
-                  shape: const CircleBorder(),
-                  padding: const EdgeInsets.all(10),
-                  backgroundColor: Colors.indigoAccent,
+                  return null;
+                }),
+          ),
+          const SizedBox(height: 5),
+          Row(children: const [
+            Text('user ID',
+                style: TextStyle(
+                    fontSize: 17,
+                    fontFamily: 'SDFText',
+                    fontWeight: FontWeight.w700))
+          ]),
+          SizedBox(
+            height: 30,
+            child: TextFormField(
+                controller: _idController,
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(
+                  hintText: 'ID',
+                  hintStyle: TextStyle(
+                      fontSize: 13, fontFamily: 'SFPro', color: Colors.grey),
                 ),
-                child: const Icon(Icons.settings, size: 50))
-          ],
-        ),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Enter Your ID';
+                  }
+
+                  return null;
+                }),
+          ),
+          const SizedBox(height: 5),
+          Row(children: const [
+            Text('설명',
+                style: TextStyle(
+                    fontSize: 17,
+                    fontFamily: 'SDFText',
+                    fontWeight: FontWeight.w700))
+          ]),
+          SizedBox(
+            height: 30,
+            child: TextFormField(
+              controller: _explainController,
+              keyboardType: TextInputType.text,
+              decoration: const InputDecoration(
+                hintText: 'Please enter your Explains',
+                hintStyle: TextStyle(
+                    fontSize: 13, fontFamily: 'SFPro', color: Colors.grey),
+              ),
+            ),
+          ),
+          const SizedBox(height: 5),
+          Row(children: const [
+            Text('전화번호',
+                style: TextStyle(
+                    fontSize: 17,
+                    fontFamily: 'SDFText',
+                    fontWeight: FontWeight.w700))
+          ]),
+          SizedBox(
+            height: 35,
+            child: TextFormField(
+              controller: _telnumController,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                hintText: 'Enter Your Phone Number',
+                hintStyle: TextStyle(
+                    fontSize: 13, fontFamily: 'SFPro', color: Colors.grey),
+              ),
+            ),
+          ),
+          const SizedBox(height: 5),
+          Row(children: const [
+            Text('이메일',
+                style: TextStyle(
+                    fontSize: 17,
+                    fontFamily: 'SDFText',
+                    fontWeight: FontWeight.w700))
+          ]),
+          SizedBox(
+            height: 30,
+            child: TextFormField(
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(
+                  hintText: 'Enter Your Email',
+                  hintStyle: TextStyle(
+                      fontSize: 13, fontFamily: 'SFPro', color: Colors.grey),
+                ),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Enter Your Email';
+                  }
+                  return null;
+                }),
+          ),
+          const SizedBox(height: 30),
+          ElevatedButton(
+              onPressed: () async {
+                if (_formKey.currentState!.validate()) {
+                  if (await isSomeoneisUsingID(_idController!.text)) {
+                    Get.snackbar('ID를 다시 입력하세요!', '누군가가 같은 ID를 이미 사용 중입니다.');
+                    return;
+                  } //아이디 중복 확인 필터 나중에 필요
+                  else {
+                    userDoc.update({
+                      'userName': _nameController!.text,
+                      'userID': _idController!.text,
+                      'userExplain': _explainController!.text,
+                      'telephoneNum': _telnumController!.text,
+                      'email': _emailController!.text,
+                    });
+                    me!.updateEmail(
+                        _emailController!.text); //이것으로도 메일이 바뀌지 않을 수 있음.
+                    if (!mounted) return;
+                    Navigator.pop(context);
+                  }
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                shape: const CircleBorder(),
+                padding: const EdgeInsets.all(10),
+                backgroundColor: Colors.indigoAccent,
+              ),
+              child: const Icon(Icons.settings, size: 50))
+        ],
       ),
     ));
   }

@@ -89,6 +89,7 @@ MERGED from [:geolocator_android] /Users/kmin/Desktop/QED_ThinKit/build/geolocat
 MERGED from [:image_picker_android] /Users/kmin/Desktop/QED_ThinKit/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-21:12
 MERGED from [:flutter_plugin_android_lifecycle] /Users/kmin/Desktop/QED_ThinKit/build/flutter_plugin_android_lifecycle/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:modal_progress_hud_nsn] /Users/kmin/Desktop/QED_ThinKit/build/modal_progress_hud_nsn/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:flutter_clipboard_manager] /Users/kmin/Desktop/QED_ThinKit/build/flutter_clipboard_manager/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:url_launcher_android] /Users/kmin/Desktop/QED_ThinKit/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-16:12
 MERGED from [:image_cropper] /Users/kmin/Desktop/QED_ThinKit/build/image_cropper/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.multidex:multidex:2.0.0] /Users/kmin/.gradle/caches/transforms-3/153ccb32d72bb2d72cb4355370fb27fb/transformed/multidex-2.0.0/AndroidManifest.xml:17:1-22:12
@@ -207,6 +208,8 @@ MERGED from [:flutter_plugin_android_lifecycle] /Users/kmin/Desktop/QED_ThinKit/
 MERGED from [:flutter_plugin_android_lifecycle] /Users/kmin/Desktop/QED_ThinKit/build/flutter_plugin_android_lifecycle/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:modal_progress_hud_nsn] /Users/kmin/Desktop/QED_ThinKit/build/modal_progress_hud_nsn/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:modal_progress_hud_nsn] /Users/kmin/Desktop/QED_ThinKit/build/modal_progress_hud_nsn/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_clipboard_manager] /Users/kmin/Desktop/QED_ThinKit/build/flutter_clipboard_manager/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_clipboard_manager] /Users/kmin/Desktop/QED_ThinKit/build/flutter_clipboard_manager/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:url_launcher_android] /Users/kmin/Desktop/QED_ThinKit/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:url_launcher_android] /Users/kmin/Desktop/QED_ThinKit/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:image_cropper] /Users/kmin/Desktop/QED_ThinKit/build/image_cropper/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41

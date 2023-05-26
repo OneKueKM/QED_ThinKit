@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -134,8 +133,6 @@ class _ProfileTapState extends State<ProfileTap> {
   @override
   Widget build(BuildContext context) {
     final userDoc = FirebaseFirestore.instance.collection('Users').doc(me!.uid);
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: [SystemUiOverlay.bottom]);
 
     return Scaffold(
       body: SafeArea(

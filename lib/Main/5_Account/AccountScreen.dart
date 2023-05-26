@@ -6,6 +6,8 @@ import 'package:qed_app_thinkit/Main/5_Account/5_Tap/ProfileTap.dart';
 import 'package:qed_app_thinkit/Main/5_Account/5_Widget/AsKakaoAds.dart';
 import 'package:qed_app_thinkit/Main/5_Account/5_Widget/Explains.dart';
 
+import 'package:flutter/services.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -100,14 +102,27 @@ class _MyAppState extends State<AccountScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             ProfileCard(
-                              ontap: () => {
+                              ontap: () {
+                                SystemChrome.setEnabledSystemUIMode(
+                                  SystemUiMode.manual,
+                                  overlays: [SystemUiOverlay.bottom],
+                                );
                                 Navigator.push(
-                                    context,
-                                    PageTransition(
-                                        type: PageTransitionType.rightToLeft,
-                                        child: ProfileTap(
-                                          userInfo: snapshot.data!,
-                                        )))
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: ProfileTap(
+                                      userInfo: snapshot.data!,
+                                    ),
+                                  ),
+                                ).then((value) {
+                                  SystemChrome.setEnabledSystemUIMode(
+                                      SystemUiMode.manual,
+                                      overlays: [
+                                        SystemUiOverlay.bottom,
+                                        SystemUiOverlay.top
+                                      ]);
+                                });
                               },
                               userName: snapshot.data!['userName'],
                               userExplain: snapshot.data!['userExplain'],

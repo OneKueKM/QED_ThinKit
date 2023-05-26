@@ -9,7 +9,6 @@ import 'package:qed_app_thinkit/Main/5_Account/5_Widget/Explains.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:tabler_icons/tabler_icons.dart';
 import 'package:page_transition/page_transition.dart';
 

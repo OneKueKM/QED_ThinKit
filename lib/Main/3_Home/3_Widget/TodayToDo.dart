@@ -29,7 +29,6 @@ class _todayToDoState extends State<todayToDo> {
                     color: Colors.black,
                   ),
                 ),
-                SizedBox(width: 5),
               ],
             ),
             const SizedBox(

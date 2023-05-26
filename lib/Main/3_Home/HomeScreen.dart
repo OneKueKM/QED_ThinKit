@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:qed_app_thinkit/BasicWidgets/obtaindate.dart';
 import 'package:qed_app_thinkit/Main/3_Home/3_Widget/TodayToDo.dart';
-import 'package:qed_app_thinkit/Main/3_Home/3_Widget/WeatherWidget.dart';
+import 'package:qed_app_thinkit/Main/3_Home/3_Widget/Weather.dart';
+import 'package:qed_app_thinkit/Main/3_Home/3_Widget/MoonPhases.dart';
 import 'package:qed_app_thinkit/Main/3_Home/3_Tap/NewNotiTap.dart';
 import 'package:qed_app_thinkit/Main/3_Home/3_Widget/Notice.dart';
 import 'package:qed_app_thinkit/Main/3_Home/3_Widget/Timeline.dart';
@@ -24,9 +25,26 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   Future<void> requestNew() async {
     await Future.delayed(const Duration(milliseconds: 1000));
-    await const HomeScreen();
-
+    const HomeScreen();
     setState(() {});
+  }
+
+  double currentTimePercentage = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    updateCurrentTimePercentage();
+  }
+
+  void updateCurrentTimePercentage() {
+    DateTime now = DateTime.now();
+    int totalMinutes = 1440;
+    int currentMinutes = now.hour * 60 + now.minute;
+    double percentage = (currentMinutes / totalMinutes);
+    setState(() {
+      currentTimePercentage = percentage;
+    });
   }
 
   @override
@@ -39,10 +57,11 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         centerTitle: true,
         leading: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [SizedBox(width: 10), WeatherWidget()],
-        ),
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: currentTimePercentage >= 0.8
+                ? [const SizedBox(width: 10), const MoonPhases()]
+                : [const SizedBox(width: 10), const Weather()]),
         actions: <Widget>[
           IconButton(
             icon: const Icon(TablerIcons.bell),

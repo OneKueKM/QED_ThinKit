@@ -217,7 +217,7 @@ class _ActionRowState extends State<ActionRow> {
                 ),
                 const SizedBox(height: 5),
                 const Text(
-                  '데이터',
+                  '연구실',
                   style: TextStyle(
                       fontFamily: 'SFProDisplay',
                       fontSize: 10,

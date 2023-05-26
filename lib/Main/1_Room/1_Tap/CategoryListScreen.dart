@@ -95,7 +95,7 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
             final cateArray = snapshot.data!.docs;
 
             return Padding(
-                padding: const EdgeInsets.fromLTRB(10, 60, 10, 0),
+                padding: const EdgeInsets.fromLTRB(15, 60, 15, 0),
                 child: Column(children: [
                   MajorRoomBox(
                     upText: '나의 메모',

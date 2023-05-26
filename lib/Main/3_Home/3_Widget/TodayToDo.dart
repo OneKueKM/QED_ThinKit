@@ -7,18 +7,11 @@ import 'package:tabler_icons/tabler_icons.dart';
 class todayToDo extends StatefulWidget {
   todayToDo({super.key});
 
-  var f = NumberFormat("###.0#", "en_US");
-
   @override
   State<todayToDo> createState() => _todayToDoState();
 }
 
 class _todayToDoState extends State<todayToDo> {
-  int spendLimit = 500000;
-  int spentMoney = 322200;
-  double spentRate = 0.644;
-  double spentPercent = 64.4;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -58,7 +51,7 @@ class _todayToDoState extends State<todayToDo> {
                               Icon(TablerIcons.square_rounded_check, size: 17)),
                       SizedBox(width: 10),
                       SizedBox(
-                        height: 20,
+                        height: 25,
                         child: Text(
                           '유튜브 프리미엄 결제',
                           style: TextStyle(
@@ -74,7 +67,7 @@ class _todayToDoState extends State<todayToDo> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: const [
                       SizedBox(
-                        height: 20,
+                        height: 25,
                         child: Text(
                           '재정 캘린더',
                           style: TextStyle(
@@ -111,7 +104,7 @@ class _todayToDoState extends State<todayToDo> {
                           child: Icon(TablerIcons.square_rounded, size: 17)),
                       SizedBox(width: 10),
                       SizedBox(
-                        height: 20,
+                        height: 25,
                         child: Text(
                           '저녁에 안성탕면 먹기',
                           style: TextStyle(
@@ -127,7 +120,7 @@ class _todayToDoState extends State<todayToDo> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: const [
                       SizedBox(
-                        height: 20,
+                        height: 25,
                         child: Text(
                           '투두리스트',
                           style: TextStyle(
@@ -164,7 +157,7 @@ class _todayToDoState extends State<todayToDo> {
                           child: Icon(TablerIcons.square_rounded, size: 17)),
                       SizedBox(width: 10),
                       SizedBox(
-                        height: 20,
+                        height: 25,
                         child: Text(
                           '센트럴파크 1시간 걷기',
                           style: TextStyle(
@@ -180,7 +173,7 @@ class _todayToDoState extends State<todayToDo> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: const [
                       SizedBox(
-                        height: 20,
+                        height: 25,
                         child: Text(
                           '투두리스트',
                           style: TextStyle(
@@ -217,7 +210,7 @@ class _todayToDoState extends State<todayToDo> {
                           child: Icon(TablerIcons.square_rounded, size: 17)),
                       SizedBox(width: 10),
                       SizedBox(
-                        height: 20,
+                        height: 25,
                         child: Text(
                           '자기 전 피부 관리',
                           style: TextStyle(
@@ -233,7 +226,7 @@ class _todayToDoState extends State<todayToDo> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: const [
                       SizedBox(
-                        height: 20,
+                        height: 25,
                         child: Text(
                           '일상 루틴',
                           style: TextStyle(

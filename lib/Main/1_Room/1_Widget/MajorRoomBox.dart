@@ -45,7 +45,7 @@ class MajorRoomBox extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      width: 220,
+                      width: 200,
                       child: Text(upText,
                           style: const TextStyle(
                               fontFamily: 'SFProDisplay',
@@ -60,9 +60,9 @@ class MajorRoomBox extends StatelessWidget {
                         children: [
                           favorites
                               ? Icon(
-                            Icons.star,
-                            color: Colors.grey,
-                          )
+                                  Icons.star,
+                                  color: Colors.grey,
+                                )
                               : Container(),
                           Text(
                             downText,

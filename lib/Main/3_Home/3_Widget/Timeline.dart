@@ -21,7 +21,7 @@ class _TimelineState extends State<Timeline> {
 
   void updateCurrentTimePercentage() {
     DateTime now = DateTime.now();
-    int totalMinutes = 24 * 60;
+    int totalMinutes = 1440;
     int currentMinutes = now.hour * 60 + now.minute;
     double percentage = (currentMinutes / totalMinutes);
     setState(() {

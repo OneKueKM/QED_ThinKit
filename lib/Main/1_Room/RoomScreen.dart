@@ -95,7 +95,7 @@ class _RoomScreenState extends State<RoomScreen> {
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                        padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
                         child: MajorRoomBox(
                             upText: '개인 메모',
                             downText: 'Partly Private',

@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import io.flutter.Log;
 
 import io.flutter.embedding.engine.FlutterEngine;
+import io.flutter.embedding.engine.plugins.shim.ShimPluginRegistry;
 
 /**
  * Generated file. Do not edit.
@@ -15,6 +16,7 @@ import io.flutter.embedding.engine.FlutterEngine;
 public final class GeneratedPluginRegistrant {
   private static final String TAG = "GeneratedPluginRegistrant";
   public static void registerWith(@NonNull FlutterEngine flutterEngine) {
+    ShimPluginRegistry shimPluginRegistry = new ShimPluginRegistry(flutterEngine);
     try {
       flutterEngine.getPlugins().add(new io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestorePlugin());
     } catch(Exception e) {
@@ -34,6 +36,11 @@ public final class GeneratedPluginRegistrant {
       flutterEngine.getPlugins().add(new io.flutter.plugins.firebase.storage.FlutterFirebaseStoragePlugin());
     } catch(Exception e) {
       Log.e(TAG, "Error registering plugin firebase_storage, io.flutter.plugins.firebase.storage.FlutterFirebaseStoragePlugin", e);
+    }
+    try {
+      com.example.flutter_clipboard_manager.FlutterClipboardManagerPlugin.registerWith(shimPluginRegistry.registrarFor("com.example.flutter_clipboard_manager.FlutterClipboardManagerPlugin"));
+    } catch(Exception e) {
+      Log.e(TAG, "Error registering plugin flutter_clipboard_manager, com.example.flutter_clipboard_manager.FlutterClipboardManagerPlugin", e);
     }
     try {
       flutterEngine.getPlugins().add(new io.flutter.plugins.flutter_plugin_android_lifecycle.FlutterAndroidLifecyclePlugin());

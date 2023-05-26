@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/src/widgets/framework.dart';
 
-import 'package:qed_app_thinkit/main.dart';
+import 'package:qed_app_thinkit/Main/5_Account/5_Tap/TermsOfUse.dart';
+import 'package:qed_app_thinkit/Main/5_Account/5_Tap/InfoPolicy.dart';
+import 'package:qed_app_thinkit/Main/5_Account/5_Tap/CustomerService.dart';
 
-import 'package:qed_app_thinkit/Main/5_Account/5_Tap/SettingsTap.dart';
-
+import 'package:clipboard/clipboard.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tabler_icons/tabler_icons.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Explains extends StatelessWidget {
   const Explains({super.key});
@@ -32,7 +34,7 @@ class Explains extends StatelessWidget {
                   children: const [
                     Icon(
                       TablerIcons.book,
-                      size: 25,
+                      size: 20,
                       color: Color.fromARGB(255, 77, 77, 77),
                     ),
                   ],
@@ -51,12 +53,10 @@ class Explains extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-            margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+        const Divider(
             height: 10,
-            width: 500,
-            child: const Divider(
-                color: Color.fromARGB(255, 222, 222, 222), thickness: 1)),
+            color: Color.fromARGB(255, 222, 222, 222),
+            thickness: 1),
         Container(
             margin: const EdgeInsets.fromLTRB(20, 10, 10, 0),
             child: GestureDetector(
@@ -65,7 +65,7 @@ class Explains extends StatelessWidget {
                     context,
                     PageTransition(
                         type: PageTransitionType.rightToLeft,
-                        child: const SettingsTap()))
+                        child: const TermsOfUse()))
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -84,7 +84,13 @@ class Explains extends StatelessWidget {
         Container(
             margin: const EdgeInsets.fromLTRB(20, 15, 10, 0),
             child: GestureDetector(
-              onTap: () => {},
+              onTap: () => {
+                Navigator.push(
+                    context,
+                    PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        child: const InfoPolicy()))
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: const [
@@ -117,7 +123,7 @@ class Explains extends StatelessWidget {
                   children: const [
                     Icon(
                       TablerIcons.phone,
-                      size: 25,
+                      size: 20,
                       color: Color.fromARGB(255, 77, 77, 77),
                     ),
                   ],
@@ -136,16 +142,18 @@ class Explains extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-            margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+        const Divider(
             height: 10,
-            width: 500,
-            child: const Divider(
-                color: Color.fromARGB(255, 222, 222, 222), thickness: 1)),
+            color: Color.fromARGB(255, 222, 222, 222),
+            thickness: 1),
         Container(
-            margin: const EdgeInsets.fromLTRB(20, 10, 10, 0),
+            margin: const EdgeInsets.fromLTRB(20, 15, 10, 0),
             child: GestureDetector(
-              onTap: () => {},
+              onTap: () {
+                FlutterClipboard.copy('제휴 메일 복사하기')
+                    // ignore: avoid_print
+                    .then((value) => print('Copied'));
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: const [
@@ -163,7 +171,11 @@ class Explains extends StatelessWidget {
         Container(
             margin: const EdgeInsets.fromLTRB(20, 15, 10, 0),
             child: GestureDetector(
-              onTap: () => {},
+              onTap: () {
+                FlutterClipboard.copy('qedinc2299@gmail.com')
+                    // ignore: avoid_print
+                    .then((value) => print('Copied'));
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: const [
@@ -181,7 +193,13 @@ class Explains extends StatelessWidget {
         Container(
             margin: const EdgeInsets.fromLTRB(20, 15, 10, 0),
             child: GestureDetector(
-              onTap: () => {},
+              onTap: () => {
+                Navigator.push(
+                    context,
+                    PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        child: const CustomeService()))
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: const [
@@ -213,8 +231,8 @@ class Explains extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     Icon(
-                      TablerIcons.checks,
-                      size: 25,
+                      TablerIcons.brand_github,
+                      size: 20,
                       color: Color.fromARGB(255, 77, 77, 77),
                     ),
                   ],
@@ -233,12 +251,10 @@ class Explains extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-            margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+        const Divider(
             height: 10,
-            width: 500,
-            child: const Divider(
-                color: Color.fromARGB(255, 222, 222, 222), thickness: 1)),
+            color: Color.fromARGB(255, 222, 222, 222),
+            thickness: 1),
         Container(
             margin: const EdgeInsets.fromLTRB(20, 10, 10, 0),
             child: GestureDetector(
@@ -246,17 +262,22 @@ class Explains extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
-                    version,
-                    style: const TextStyle(
-                        fontFamily: 'SFProDisplay',
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black),
+                  GestureDetector(
+                    onTap: () => launchUrl(
+                        Uri.parse('https://github.com/OneKueKM/QED_ThinKit')),
+                    child: const SizedBox(
+                        child: Text(
+                            'Repository (GitHub)', //추후 AppStore / PlayStore로 바뀔 부분
+                            style: TextStyle(
+                                fontFamily: 'SFProDisplay',
+                                fontSize: 13,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black))),
                   ),
                 ],
               ),
             )),
+        const SizedBox(height: 30),
         GestureDetector(
           onTap: () => FirebaseAuth.instance.signOut(),
           child: Container(

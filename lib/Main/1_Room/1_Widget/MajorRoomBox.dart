@@ -59,7 +59,7 @@ class MajorRoomBox extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           favorites
-                              ? Icon(
+                              ? const Icon(
                                   Icons.star,
                                   color: Colors.grey,
                                 )

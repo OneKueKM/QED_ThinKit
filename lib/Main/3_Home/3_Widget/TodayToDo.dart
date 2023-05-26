@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-import 'package:cupertino_progress_bar/cupertino_progress_bar.dart';
 import 'package:tabler_icons/tabler_icons.dart';
 
 class todayToDo extends StatefulWidget {
@@ -38,6 +36,7 @@ class _todayToDoState extends State<todayToDo> {
               height: 10,
             ),
             Container(
+              height: 25,
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,7 +50,7 @@ class _todayToDoState extends State<todayToDo> {
                               Icon(TablerIcons.square_rounded_check, size: 17)),
                       SizedBox(width: 10),
                       SizedBox(
-                        height: 25,
+                        height: 20,
                         child: Text(
                           '유튜브 프리미엄 결제',
                           style: TextStyle(
@@ -63,35 +62,38 @@ class _todayToDoState extends State<todayToDo> {
                       ),
                     ],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: const [
-                      SizedBox(
-                        height: 25,
-                        child: Text(
-                          '재정 캘린더',
-                          style: TextStyle(
-                              fontFamily: 'SFProText',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 13,
-                              color: Color.fromARGB(255, 122, 122, 122)),
+                  GestureDetector(
+                    onTap: () => {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: const [
+                        SizedBox(
+                          height: 20,
+                          child: Text(
+                            '재정캘린더',
+                            style: TextStyle(
+                                fontFamily: 'SFProText',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 13,
+                                color: Color.fromARGB(255, 122, 122, 122)),
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 1),
-                      SizedBox(
-                          height: 17,
-                          child: Icon(
-                            TablerIcons.chevron_right,
-                            size: 15,
-                            color: Color.fromARGB(255, 122, 122, 122),
-                          )),
-                    ],
+                        SizedBox(
+                            height: 17,
+                            child: Icon(
+                              TablerIcons.chevron_right,
+                              size: 15,
+                              color: Color.fromARGB(255, 122, 122, 122),
+                            )),
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 10),
             Container(
+              height: 25,
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -104,7 +106,7 @@ class _todayToDoState extends State<todayToDo> {
                           child: Icon(TablerIcons.square_rounded, size: 17)),
                       SizedBox(width: 10),
                       SizedBox(
-                        height: 25,
+                        height: 20,
                         child: Text(
                           '저녁에 안성탕면 먹기',
                           style: TextStyle(
@@ -116,35 +118,38 @@ class _todayToDoState extends State<todayToDo> {
                       ),
                     ],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: const [
-                      SizedBox(
-                        height: 25,
-                        child: Text(
-                          '투두리스트',
-                          style: TextStyle(
-                              fontFamily: 'SFProText',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 13,
-                              color: Color.fromARGB(255, 122, 122, 122)),
+                  GestureDetector(
+                    onTap: () => {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: const [
+                        SizedBox(
+                          height: 20,
+                          child: Text(
+                            '투두리스트',
+                            style: TextStyle(
+                                fontFamily: 'SFProText',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 13,
+                                color: Color.fromARGB(255, 122, 122, 122)),
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 1),
-                      SizedBox(
-                          height: 17,
-                          child: Icon(
-                            TablerIcons.chevron_right,
-                            size: 15,
-                            color: Color.fromARGB(255, 122, 122, 122),
-                          )),
-                    ],
+                        SizedBox(
+                            height: 17,
+                            child: Icon(
+                              TablerIcons.chevron_right,
+                              size: 15,
+                              color: Color.fromARGB(255, 122, 122, 122),
+                            )),
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 10),
             Container(
+              height: 25,
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -157,7 +162,7 @@ class _todayToDoState extends State<todayToDo> {
                           child: Icon(TablerIcons.square_rounded, size: 17)),
                       SizedBox(width: 10),
                       SizedBox(
-                        height: 25,
+                        height: 20,
                         child: Text(
                           '센트럴파크 1시간 걷기',
                           style: TextStyle(
@@ -169,48 +174,53 @@ class _todayToDoState extends State<todayToDo> {
                       ),
                     ],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: const [
-                      SizedBox(
-                        height: 25,
-                        child: Text(
-                          '투두리스트',
-                          style: TextStyle(
-                              fontFamily: 'SFProText',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 13,
-                              color: Color.fromARGB(255, 122, 122, 122)),
+                  GestureDetector(
+                    onTap: () => {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: const [
+                        SizedBox(
+                          height: 20,
+                          child: Text(
+                            '투두리스트',
+                            style: TextStyle(
+                                fontFamily: 'SFProText',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 13,
+                                color: Color.fromARGB(255, 122, 122, 122)),
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 1),
-                      SizedBox(
-                          height: 17,
-                          child: Icon(
-                            TablerIcons.chevron_right,
-                            size: 15,
-                            color: Color.fromARGB(255, 122, 122, 122),
-                          )),
-                    ],
+                        SizedBox(
+                            height: 17,
+                            child: Icon(
+                              TablerIcons.chevron_right,
+                              size: 15,
+                              color: Color.fromARGB(255, 122, 122, 122),
+                            )),
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 10),
             Container(
+              height: 25,
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: const [
                       SizedBox(
                           height: 17,
                           child: Icon(TablerIcons.square_rounded, size: 17)),
                       SizedBox(width: 10),
                       SizedBox(
-                        height: 25,
+                        height: 20,
                         child: Text(
                           '자기 전 피부 관리',
                           style: TextStyle(
@@ -222,29 +232,31 @@ class _todayToDoState extends State<todayToDo> {
                       ),
                     ],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: const [
-                      SizedBox(
-                        height: 25,
-                        child: Text(
-                          '일상 루틴',
-                          style: TextStyle(
-                              fontFamily: 'SFProText',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 13,
-                              color: Color.fromARGB(255, 122, 122, 122)),
+                  GestureDetector(
+                    onTap: () => {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: const [
+                        SizedBox(
+                          height: 20,
+                          child: Text(
+                            '루틴',
+                            style: TextStyle(
+                                fontFamily: 'SFProText',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 13,
+                                color: Color.fromARGB(255, 122, 122, 122)),
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 1),
-                      SizedBox(
-                          height: 17,
-                          child: Icon(
-                            TablerIcons.chevron_right,
-                            size: 15,
-                            color: Color.fromARGB(255, 122, 122, 122),
-                          )),
-                    ],
+                        SizedBox(
+                            height: 17,
+                            child: Icon(
+                              TablerIcons.chevron_right,
+                              size: 15,
+                              color: Color.fromARGB(255, 122, 122, 122),
+                            )),
+                      ],
+                    ),
                   ),
                 ],
               ),

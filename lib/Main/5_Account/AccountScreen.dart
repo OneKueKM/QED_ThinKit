@@ -11,6 +11,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:tabler_icons/tabler_icons.dart';
+import 'package:page_transition/page_transition.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -83,7 +84,7 @@ class _MyAppState extends State<AccountScreen> {
                   IconButton(
                     icon: const Icon(TablerIcons.moon_stars),
                     color: Colors.black,
-                    iconSize: 27,
+                    iconSize: 22,
                     onPressed: () {},
                   ),
                 ],
@@ -100,12 +101,15 @@ class _MyAppState extends State<AccountScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             ProfileCard(
-                              ontap: () => showCupertinoModalSheet(
-                                context: context,
-                                builder: (context) => ProfileTap(
-                                  userInfo: snapshot.data!,
-                                ),
-                              ),
+                              ontap: () => {
+                                Navigator.push(
+                                    context,
+                                    PageTransition(
+                                        type: PageTransitionType.rightToLeft,
+                                        child: ProfileTap(
+                                          userInfo: snapshot.data!,
+                                        )))
+                              },
                               userName: snapshot.data!['userName'],
                               userExplain: snapshot.data!['userExplain'],
                               userProfileURL: snapshot.data!['userProfile'],
@@ -118,7 +122,7 @@ class _MyAppState extends State<AccountScreen> {
                             const SizedBox(height: 20),
                             const Explains(),
                             const SizedBox(
-                                height: 20) // 로그아웃 밑 여백주려고 일부로 만들었으니 삭제하지 마세요.
+                                height: 20) // 로그아웃 밑 여백주려고 일부로 만들었으니 삭제 말 것.
                           ],
                         ),
                       ),

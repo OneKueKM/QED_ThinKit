@@ -600,7 +600,7 @@ class _ProfileTapState extends State<ProfileTap> {
                             ],
                           ),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: const [
@@ -622,15 +622,7 @@ class _ProfileTapState extends State<ProfileTap> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              GestureDetector(
-                                onTap: () {
-                                  FlutterClipboard.copy(
-                                          userInfo!['telephoneNum'])
-                                      // ignore: avoid_print
-                                      .then((value) => print('Copied'));
-                                },
-                                child: const Icon(TablerIcons.phone, size: 22),
-                              ),
+                              const Icon(TablerIcons.phone, size: 22),
                               const VerticalDivider(
                                 color: Colors.black,
                                 width: 7,
@@ -638,15 +630,7 @@ class _ProfileTapState extends State<ProfileTap> {
                                 indent: 11,
                                 endIndent: 11,
                               ),
-                              GestureDetector(
-                                onTap: () {
-                                  FlutterClipboard.copy(userInfo!['email'])
-                                      // ignore: avoid_print
-                                      .then((value) => print('Copied'));
-                                },
-                                child: const Icon(TablerIcons.mail_opened,
-                                    size: 20),
-                              ),
+                              Icon(TablerIcons.mail_opened, size: 20),
                               const VerticalDivider(
                                 color: Colors.black,
                                 width: 7,

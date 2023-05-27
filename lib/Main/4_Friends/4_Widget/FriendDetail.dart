@@ -122,9 +122,7 @@ class _FriendDetailState extends State<FriendDetail> {
                           ),
                         SizedBox(
                             child: GestureDetector(
-                          onTap: () {
-                            HapticFeedback.lightImpact();
-                          },
+                          onTap: () {},
                           child: SizedBox(
                             height: 25,
                             child: Row(

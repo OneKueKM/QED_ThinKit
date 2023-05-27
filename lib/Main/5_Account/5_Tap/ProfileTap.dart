@@ -138,6 +138,226 @@ class _ProfileTapState extends State<ProfileTap> {
   Widget build(BuildContext context) {
     final userDoc = FirebaseFirestore.instance.collection('Users').doc(me!.uid);
 
+    if (EditProfile) {
+      return Scaffold(
+        body: SafeArea(
+          child: ScrollConfiguration(
+            behavior: const ScrollBehavior().copyWith(overscroll: false),
+            child: ListView(children: [
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    Container(
+                      height: 350,
+                      width: double.maxFinite,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              fit: BoxFit.fitWidth,
+                              image: NetworkImage(userInfo!['userProfile']))),
+                    ),
+                    const SizedBox(height: 10),
+                    Container(
+                      height: 4,
+                      width: 40,
+                      decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 222, 222, 222),
+                          borderRadius: BorderRadius.all(Radius.circular(40))),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 50,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                SizedBox(
+                                    child: GestureDetector(
+                                  onTap: () async {
+                                    EditProfile = false;
+                                    if (_formKey.currentState!.validate()) {
+                                      if (await isSomeoneisUsingID(
+                                          _idController!.text)) {
+                                        Get.snackbar('ID를 다시 입력하세요!',
+                                            '누군가가 같은 ID를 이미 사용 중입니다.');
+                                        return;
+                                      } //아이디 중복 확인 필터 나중에 필요
+                                      else {
+                                        userDoc.update({
+                                          'userName': _nameController!.text,
+                                          'userID': _idController!.text,
+                                          'userExplain':
+                                              _explainController!.text,
+                                          'telephoneNum':
+                                              _telnumController!.text,
+                                          'email': _emailController!.text,
+                                        });
+                                        me!.updateEmail(_emailController!
+                                            .text); //이것으로도 메일이 바뀌지 않을 수 있음.
+                                        if (!mounted) return;
+                                        Navigator.pop(context);
+                                      }
+                                    }
+                                  },
+                                  child: SizedBox(
+                                    height: 25,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: const [
+                                        Text('Done',
+                                            style: TextStyle(
+                                                fontFamily: 'SFProText',
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 13))
+                                      ],
+                                    ),
+                                  ),
+                                )),
+                              ],
+                            ),
+                          ),
+                          Row(children: const [
+                            Text("이름 수정 부분 스타트",
+                                style: TextStyle(
+                                    fontSize: 17,
+                                    fontFamily: 'SDFText',
+                                    fontWeight: FontWeight.w700))
+                          ]),
+                          SizedBox(
+                            height: 25,
+                            child: TextFormField(
+                                controller: _nameController,
+                                keyboardType: TextInputType.text,
+                                decoration: const InputDecoration(
+                                  hintText: 'your name',
+                                  hintStyle: TextStyle(
+                                      fontSize: 13,
+                                      fontFamily: 'SFPro',
+                                      color: Colors.grey),
+                                ),
+                                validator: (String? value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Enter Your Name';
+                                  }
+                                  return null;
+                                }),
+                          ),
+                          const SizedBox(height: 5),
+                          Row(children: const [
+                            Text('user ID',
+                                style: TextStyle(
+                                    fontSize: 17,
+                                    fontFamily: 'SDFText',
+                                    fontWeight: FontWeight.w700))
+                          ]),
+                          SizedBox(
+                            height: 30,
+                            child: TextFormField(
+                                controller: _idController,
+                                keyboardType: TextInputType.text,
+                                decoration: const InputDecoration(
+                                  hintText: 'ID',
+                                  hintStyle: TextStyle(
+                                      fontSize: 13,
+                                      fontFamily: 'SFPro',
+                                      color: Colors.grey),
+                                ),
+                                validator: (String? value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Enter Your ID';
+                                  }
+
+                                  return null;
+                                }),
+                          ),
+                          const SizedBox(height: 5),
+                          Row(children: const [
+                            Text('설명',
+                                style: TextStyle(
+                                    fontSize: 17,
+                                    fontFamily: 'SDFText',
+                                    fontWeight: FontWeight.w700))
+                          ]),
+                          SizedBox(
+                            height: 30,
+                            child: TextFormField(
+                              controller: _explainController,
+                              keyboardType: TextInputType.text,
+                              decoration: const InputDecoration(
+                                hintText: 'Please enter your Explains',
+                                hintStyle: TextStyle(
+                                    fontSize: 13,
+                                    fontFamily: 'SFPro',
+                                    color: Colors.grey),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          Row(children: const [
+                            Text('전화번호',
+                                style: TextStyle(
+                                    fontSize: 17,
+                                    fontFamily: 'SDFText',
+                                    fontWeight: FontWeight.w700))
+                          ]),
+                          SizedBox(
+                            height: 35,
+                            child: TextFormField(
+                              controller: _telnumController,
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                hintText: 'Enter Your Phone Number',
+                                hintStyle: TextStyle(
+                                    fontSize: 13,
+                                    fontFamily: 'SFPro',
+                                    color: Colors.grey),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          Row(children: const [
+                            Text('이메일',
+                                style: TextStyle(
+                                    fontSize: 17,
+                                    fontFamily: 'SDFText',
+                                    fontWeight: FontWeight.w700))
+                          ]),
+                          SizedBox(
+                            height: 30,
+                            child: TextFormField(
+                                controller: _emailController,
+                                keyboardType: TextInputType.emailAddress,
+                                decoration: const InputDecoration(
+                                  hintText: 'Enter Your Email',
+                                  hintStyle: TextStyle(
+                                      fontSize: 13,
+                                      fontFamily: 'SFPro',
+                                      color: Colors.grey),
+                                ),
+                                validator: (String? value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Enter Your Email';
+                                  }
+                                  return null;
+                                }),
+                          ),
+                          const SizedBox(height: 30),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ]),
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       body: SafeArea(
         child: ScrollConfiguration(
@@ -245,7 +465,7 @@ class _ProfileTapState extends State<ProfileTap> {
                                       // ignore: avoid_print
                                       .then((value) => print('Copied'));
                                 },
-                                child: const Icon(TablerIcons.phone, size: 25),
+                                child: const Icon(TablerIcons.phone, size: 22),
                               ),
                               const VerticalDivider(
                                 color: Colors.black,
@@ -261,7 +481,7 @@ class _ProfileTapState extends State<ProfileTap> {
                                       .then((value) => print('Copied'));
                                 },
                                 child: const Icon(TablerIcons.mail_opened,
-                                    size: 22),
+                                    size: 20),
                               ),
                               const VerticalDivider(
                                 color: Colors.black,
@@ -293,7 +513,7 @@ class _ProfileTapState extends State<ProfileTap> {
                             height: 30,
                             color: Color.fromARGB(255, 188, 188, 188),
                             thickness: 1),
-                        const SizedBox(height: 15),
+                        const SizedBox(height: 10),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: const [
@@ -356,132 +576,6 @@ class _ProfileTapState extends State<ProfileTap> {
                           ],
                         ),
                         const SizedBox(height: 10),
-                        Row(children: const [
-                          Text("이름",
-                              style: TextStyle(
-                                  fontSize: 17,
-                                  fontFamily: 'SDFText',
-                                  fontWeight: FontWeight.w700))
-                        ]),
-                        SizedBox(
-                          height: 25,
-                          child: TextFormField(
-                              controller: _nameController,
-                              keyboardType: TextInputType.text,
-                              decoration: const InputDecoration(
-                                hintText: 'your name',
-                                hintStyle: TextStyle(
-                                    fontSize: 13,
-                                    fontFamily: 'SFPro',
-                                    color: Colors.grey),
-                              ),
-                              validator: (String? value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Enter Your Name';
-                                }
-                                return null;
-                              }),
-                        ),
-                        const SizedBox(height: 5),
-                        Row(children: const [
-                          Text('user ID',
-                              style: TextStyle(
-                                  fontSize: 17,
-                                  fontFamily: 'SDFText',
-                                  fontWeight: FontWeight.w700))
-                        ]),
-                        SizedBox(
-                          height: 30,
-                          child: TextFormField(
-                              controller: _idController,
-                              keyboardType: TextInputType.text,
-                              decoration: const InputDecoration(
-                                hintText: 'ID',
-                                hintStyle: TextStyle(
-                                    fontSize: 13,
-                                    fontFamily: 'SFPro',
-                                    color: Colors.grey),
-                              ),
-                              validator: (String? value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Enter Your ID';
-                                }
-
-                                return null;
-                              }),
-                        ),
-                        const SizedBox(height: 5),
-                        Row(children: const [
-                          Text('설명',
-                              style: TextStyle(
-                                  fontSize: 17,
-                                  fontFamily: 'SDFText',
-                                  fontWeight: FontWeight.w700))
-                        ]),
-                        SizedBox(
-                          height: 30,
-                          child: TextFormField(
-                            controller: _explainController,
-                            keyboardType: TextInputType.text,
-                            decoration: const InputDecoration(
-                              hintText: 'Please enter your Explains',
-                              hintStyle: TextStyle(
-                                  fontSize: 13,
-                                  fontFamily: 'SFPro',
-                                  color: Colors.grey),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        Row(children: const [
-                          Text('전화번호',
-                              style: TextStyle(
-                                  fontSize: 17,
-                                  fontFamily: 'SDFText',
-                                  fontWeight: FontWeight.w700))
-                        ]),
-                        SizedBox(
-                          height: 35,
-                          child: TextFormField(
-                            controller: _telnumController,
-                            keyboardType: TextInputType.number,
-                            decoration: const InputDecoration(
-                              hintText: 'Enter Your Phone Number',
-                              hintStyle: TextStyle(
-                                  fontSize: 13,
-                                  fontFamily: 'SFPro',
-                                  color: Colors.grey),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        Row(children: const [
-                          Text('이메일',
-                              style: TextStyle(
-                                  fontSize: 17,
-                                  fontFamily: 'SDFText',
-                                  fontWeight: FontWeight.w700))
-                        ]),
-                        SizedBox(
-                          height: 30,
-                          child: TextFormField(
-                              controller: _emailController,
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: const InputDecoration(
-                                hintText: 'Enter Your Email',
-                                hintStyle: TextStyle(
-                                    fontSize: 13,
-                                    fontFamily: 'SFPro',
-                                    color: Colors.grey),
-                              ),
-                              validator: (String? value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Enter Your Email';
-                                }
-                                return null;
-                              }),
-                        ),
-                        const SizedBox(height: 30),
                       ],
                     ),
                   )

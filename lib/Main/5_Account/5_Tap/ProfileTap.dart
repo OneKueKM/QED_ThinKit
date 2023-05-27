@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tabler_icons/tabler_icons.dart';
+import 'package:clipboard/clipboard.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileTap extends StatefulWidget {
   DocumentSnapshot<Map<String, dynamic>> userInfo;
@@ -23,6 +25,8 @@ class ProfileTap extends StatefulWidget {
  막기 위함임을 밝힙니다. */
 
 class _ProfileTapState extends State<ProfileTap> {
+  bool EditProfile = false;
+
   Map<String, dynamic>? userInfo;
   TextEditingController? _nameController;
   TextEditingController? _idController;
@@ -160,10 +164,10 @@ class _ProfileTapState extends State<ProfileTap> {
                         borderRadius: BorderRadius.all(Radius.circular(40))),
                   ),
                   Container(
-                    padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                    padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
                     child: Column(
                       children: [
-                        Container(
+                        SizedBox(
                           height: 50,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -202,63 +206,14 @@ class _ProfileTapState extends State<ProfileTap> {
                                               ],
                                             )),
                                     child: const Icon(TablerIcons.photo,
-                                        size: 27)),
+                                        size: 25)),
                               ),
                               SizedBox(
-                                height: 25,
-                                child: Row(
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () async {
-                                        if (_formKey.currentState!.validate()) {
-                                          if (await isSomeoneisUsingID(
-                                              _idController!.text)) {
-                                            Get.snackbar('ID를 다시 입력하세요!',
-                                                '누군가가 같은 ID를 이미 사용 중입니다.');
-                                            return;
-                                          } //아이디 중복 확인 필터 나중에 필요
-                                          else {
-                                            userDoc.update({
-                                              'userName': _nameController!.text,
-                                              'userID': _idController!.text,
-                                              'userExplain':
-                                                  _explainController!.text,
-                                              'telephoneNum':
-                                                  _telnumController!.text,
-                                              'email': _emailController!.text,
-                                            });
-                                            me!.updateEmail(_emailController!
-                                                .text); //이것으로도 메일이 바뀌지 않을 수 있음.
-                                            if (!mounted) return;
-                                            Navigator.pop(context);
-                                          }
-                                        }
-                                      },
-                                      child: Container(
-                                        width: 60,
-                                        height: 25,
-                                        decoration: BoxDecoration(
-                                          color: const Color.fromARGB(
-                                              255, 69, 182, 73),
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: const [
-                                            Text('완 료',
-                                                style: TextStyle(
-                                                    fontFamily: 'SFProText',
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 13))
-                                          ],
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                child: GestureDetector(
+                                    onTap: () =>
+                                        setState(() => EditProfile = true),
+                                    child: const Icon(TablerIcons.writing_sign,
+                                        size: 25)),
                               ),
                             ],
                           ),
@@ -279,34 +234,56 @@ class _ProfileTapState extends State<ProfileTap> {
                           ],
                         ),
                         Container(
-                          padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
+                          padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
                           height: 40,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: const [
-                              const Icon(TablerIcons.phone, size: 25),
-                              VerticalDivider(
-                                color: Colors.black,
-                                width: 7,
-                                thickness: 1.5,
-                                indent: 10,
-                                endIndent: 10,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  FlutterClipboard.copy(userInfo!['email'])
+                                      // ignore: avoid_print
+                                      .then((value) => print('Copied'));
+                                },
+                                child: const Icon(TablerIcons.phone, size: 25),
                               ),
-                              const Icon(TablerIcons.mail_opened, size: 22),
-                              VerticalDivider(
+                              const VerticalDivider(
                                 color: Colors.black,
                                 width: 7,
                                 thickness: 1.5,
-                                indent: 10,
-                                endIndent: 10,
+                                indent: 11,
+                                endIndent: 11,
                               ),
-                              const Icon(TablerIcons.brand_instagram, size: 25),
-                              VerticalDivider(
+                              GestureDetector(
+                                onTap: () {
+                                  FlutterClipboard.copy(userInfo!['email'])
+                                      // ignore: avoid_print
+                                      .then((value) => print('Copied'));
+                                },
+                                child: const Icon(TablerIcons.mail_opened,
+                                    size: 22),
+                              ),
+                              const VerticalDivider(
                                 color: Colors.black,
                                 width: 7,
                                 thickness: 1.5,
-                                indent: 10,
-                                endIndent: 10,
+                                indent: 11,
+                                endIndent: 11,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  launchUrl(Uri.parse(
+                                      'https://www.instagram.com/kminforgood/'));
+                                },
+                                child: const Icon(TablerIcons.brand_instagram,
+                                    size: 22),
+                              ),
+                              const VerticalDivider(
+                                color: Colors.black,
+                                width: 7,
+                                thickness: 1.5,
+                                indent: 11,
+                                endIndent: 11,
                               ),
                               const Icon(TablerIcons.brand_telegram, size: 22)
                             ],
@@ -316,7 +293,7 @@ class _ProfileTapState extends State<ProfileTap> {
                             height: 30,
                             color: Color.fromARGB(255, 188, 188, 188),
                             thickness: 1),
-                        SizedBox(height: 15),
+                        const SizedBox(height: 15),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: const [
@@ -331,14 +308,14 @@ class _ProfileTapState extends State<ProfileTap> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SizedBox(width: 15),
+                            const SizedBox(width: 15),
                             Text(
                               userInfo!['userName'],
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontFamily: 'SFProDisplay',
                                 fontWeight: FontWeight.w400,
                                 fontSize: 15,
@@ -347,7 +324,7 @@ class _ProfileTapState extends State<ProfileTap> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 15),
+                        const SizedBox(height: 15),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: const [
@@ -362,14 +339,14 @@ class _ProfileTapState extends State<ProfileTap> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SizedBox(width: 15),
+                            const SizedBox(width: 15),
                             Text(
                               userInfo!['userExplain'],
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontFamily: 'SFProDisplay',
                                 fontWeight: FontWeight.w400,
                                 fontSize: 15,

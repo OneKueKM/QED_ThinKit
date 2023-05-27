@@ -77,7 +77,7 @@ class ProfileCard extends StatelessWidget {
                                 const SizedBox(height: 5),
                                 Text(userExplain,
                                     style: const TextStyle(
-                                        fontSize: 11,
+                                        fontSize: 13,
                                         fontFamily: 'SFProDisplay',
                                         color: Colors.grey,
                                         fontWeight: FontWeight.w400))

@@ -12,11 +12,12 @@ class TeamScheduleAddTap extends StatefulWidget {
   final DocumentReference currentUserRef;
   final List<dynamic> teamMembers;
 
-  const TeamScheduleAddTap({required this.selectedDate,
-    required this.teamRef,
-    required this.currentUserRef,
-    required this.teamMembers,
-    Key? key})
+  const TeamScheduleAddTap(
+      {required this.selectedDate,
+      required this.teamRef,
+      required this.currentUserRef,
+      required this.teamMembers,
+      Key? key})
       : super(key: key);
 
   @override
@@ -41,17 +42,13 @@ class _TeamScheduleAddTapState extends State<TeamScheduleAddTap> {
       widget.selectedDate.year,
       widget.selectedDate.month,
       widget.selectedDate.day,
-      DateTime
-          .now()
-          .hour,
+      DateTime.now().hour,
     );
     endTime = DateTime(
       widget.selectedDate.year,
       widget.selectedDate.month,
       widget.selectedDate.day,
-      DateTime
-          .now()
-          .hour + 1,
+      DateTime.now().hour + 1,
     );
   }
 
@@ -77,14 +74,10 @@ class _TeamScheduleAddTapState extends State<TeamScheduleAddTap> {
     }
     return SafeArea(
       child: SizedBox(
-        height: MediaQuery
-            .of(context)
-            .size
-            .height,
+        height: MediaQuery.of(context).size.height,
         child: Scaffold(
             floatingActionButton: FloatingActionButton(
-              onPressed: () =>
-              {
+              onPressed: () => {
                 HapticFeedback.lightImpact(),
                 if (ok)
                   {
@@ -113,10 +106,9 @@ class _TeamScheduleAddTapState extends State<TeamScheduleAddTap> {
                             ),
                             actions: [
                               TextButton(
-                                  onPressed: () =>
-                                  {
-                                    Navigator.pop(context),
-                                  },
+                                  onPressed: () => {
+                                        Navigator.pop(context),
+                                      },
                                   child: const Text('확인')),
                             ],
                           );
@@ -139,7 +131,7 @@ class _TeamScheduleAddTapState extends State<TeamScheduleAddTap> {
               centerTitle: true,
               leading: IconButton(
                 onPressed: () =>
-                {HapticFeedback.lightImpact(), Navigator.pop(context)},
+                    {HapticFeedback.lightImpact(), Navigator.pop(context)},
                 icon: const Icon(
                   Icons.chevron_left,
                   color: Colors.grey,
@@ -219,7 +211,7 @@ class _TeamScheduleAddTapState extends State<TeamScheduleAddTap> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text('종료  '),
+                      const Text('종료  '),
                       TextButton(
                         onPressed: () {
                           if (endTapped) {
@@ -271,7 +263,7 @@ class _TeamScheduleAddTapState extends State<TeamScheduleAddTap> {
                     child: Container(
                       height: 50,
                       decoration: BoxDecoration(
-                        color: Color(0xfff1efef),
+                        color: const Color(0xfff1efef),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Row(
@@ -311,23 +303,25 @@ class _TeamScheduleAddTapState extends State<TeamScheduleAddTap> {
       'content': contentController.text,
       'schedulerRef': widget.currentUserRef,
     };
-    widget.teamRef.collection('Schedules').add(teamschedule).then(
-            (DocumentReference scheduleRef) {
-          myScheduleData = <String, dynamic>{
-            'title': titleController.text == '' ? '제목 없음' : titleController.text,
-            // 입력 없으면 제목 없음으로 저장
-            'startTime': startTime,
-            'endTime': endTime,
-            'location': locationController.text,
-            'content': contentController.text,
-            'schedulerRef': widget.currentUserRef,
-            'scheduleRef': scheduleRef,
-            'teamRef' : widget.teamRef,
-          };
-          for(i = 0; i < teamMembers.length; i++){
-            teamMembers[i].collection('MySchedule').add(myScheduleData);
-          }
-        });
+    widget.teamRef
+        .collection('Schedules')
+        .add(teamschedule)
+        .then((DocumentReference scheduleRef) {
+      myScheduleData = <String, dynamic>{
+        'title': titleController.text == '' ? '제목 없음' : titleController.text,
+        // 입력 없으면 제목 없음으로 저장
+        'startTime': startTime,
+        'endTime': endTime,
+        'location': locationController.text,
+        'content': contentController.text,
+        'schedulerRef': widget.currentUserRef,
+        'scheduleRef': scheduleRef,
+        'teamRef': widget.teamRef,
+      };
+      for (i = 0; i < teamMembers.length; i++) {
+        teamMembers[i].collection('MySchedule').add(myScheduleData);
+      }
+    });
   }
 }
 
@@ -383,7 +377,7 @@ class _LocInputField extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Color(0xffefeff0),
+          color: const Color(0xffefeff0),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Row(
@@ -422,13 +416,13 @@ class _ContentInputField extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Color(0xffefeff0),
+          color: const Color(0xffefeff0),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Row(
           children: [
-            Icon(Icons.notes_outlined),
-            SizedBox(
+            const Icon(Icons.notes_outlined),
+            const SizedBox(
               width: 10,
             ),
             Expanded(

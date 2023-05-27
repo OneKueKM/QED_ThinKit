@@ -162,7 +162,7 @@ class FriendListCard extends StatelessWidget {
                                                   text:
                                                       friendData['userExplain'],
                                                   style: const TextStyle(
-                                                      fontSize: 11,
+                                                      fontSize: 13,
                                                       fontFamily:
                                                           'SFProDisplay',
                                                       color: Colors.grey,

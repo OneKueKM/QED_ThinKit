@@ -1,15 +1,20 @@
-import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'dart:io';
+
+import 'package:qed_app_thinkit/Main/5_Account/5_Tap/InfoSecurity.dart';
+
 import 'package:image_cropper/image_cropper.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:tabler_icons/tabler_icons.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/services.dart'; //Haptic Feedback
+
+import 'package:image_picker/image_picker.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class ProfileTap extends StatefulWidget {
   DocumentSnapshot<Map<String, dynamic>> userInfo;
@@ -25,7 +30,7 @@ class ProfileTap extends StatefulWidget {
  막기 위함임을 밝힙니다. */
 
 class _ProfileTapState extends State<ProfileTap> {
-  bool EditProfile = false;
+  bool editProfile = false;
 
   Map<String, dynamic>? userInfo;
   TextEditingController? _nameController;
@@ -138,7 +143,7 @@ class _ProfileTapState extends State<ProfileTap> {
   Widget build(BuildContext context) {
     final userDoc = FirebaseFirestore.instance.collection('Users').doc(me!.uid);
 
-    if (EditProfile) {
+    if (editProfile) {
       return Scaffold(
         body: SafeArea(
           child: ScrollConfiguration(
@@ -171,12 +176,34 @@ class _ProfileTapState extends State<ProfileTap> {
                           SizedBox(
                             height: 50,
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
+                                SizedBox(
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      HapticFeedback.lightImpact();
+                                      showModalBottomSheet(
+                                          context: context,
+                                          builder: (context) =>
+                                              const InfoSecurity());
+                                    },
+                                    child: Row(
+                                      children: const [
+                                        Icon(TablerIcons.shield, size: 22),
+                                        Text('  정보 공개 설정',
+                                            style: TextStyle(
+                                                fontFamily: 'SFProText',
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 13))
+                                      ],
+                                    ),
+                                  ),
+                                ),
                                 SizedBox(
                                     child: GestureDetector(
                                   onTap: () async {
-                                    EditProfile = false;
+                                    editProfile = false;
                                     if (_formKey.currentState!.validate()) {
                                       if (await isSomeoneisUsingID(
                                           _idController!.text)) {
@@ -212,7 +239,7 @@ class _ProfileTapState extends State<ProfileTap> {
                                                 fontFamily: 'SFProText',
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.w600,
-                                                fontSize: 13))
+                                                fontSize: 14))
                                       ],
                                     ),
                                   ),
@@ -220,19 +247,31 @@ class _ProfileTapState extends State<ProfileTap> {
                               ],
                             ),
                           ),
+                          const SizedBox(height: 5),
                           Row(children: const [
-                            Text("이름 수정 부분 스타트",
+                            Text("  이름",
                                 style: TextStyle(
-                                    fontSize: 17,
-                                    fontFamily: 'SDFText',
-                                    fontWeight: FontWeight.w700))
+                                    fontSize: 15,
+                                    fontFamily: 'SFPro',
+                                    fontWeight: FontWeight.w600)),
                           ]),
+                          const SizedBox(height: 7),
                           SizedBox(
-                            height: 25,
+                            height: 35,
                             child: TextFormField(
+                                textAlignVertical: TextAlignVertical.bottom,
                                 controller: _nameController,
                                 keyboardType: TextInputType.text,
                                 decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(11)),
+                                      borderSide: BorderSide(
+                                          color: Color.fromARGB(
+                                              255, 233, 233, 233))),
+                                  filled: true,
+                                  fillColor: Color.fromARGB(255, 233, 233, 233),
                                   hintText: 'your name',
                                   hintStyle: TextStyle(
                                       fontSize: 13,
@@ -246,20 +285,31 @@ class _ProfileTapState extends State<ProfileTap> {
                                   return null;
                                 }),
                           ),
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 14),
                           Row(children: const [
-                            Text('user ID',
+                            Text('  User ID',
                                 style: TextStyle(
-                                    fontSize: 17,
-                                    fontFamily: 'SDFText',
-                                    fontWeight: FontWeight.w700))
+                                    fontSize: 15,
+                                    fontFamily: 'SFPro',
+                                    fontWeight: FontWeight.w600))
                           ]),
+                          const SizedBox(height: 7),
                           SizedBox(
-                            height: 30,
+                            height: 35,
                             child: TextFormField(
+                                textAlignVertical: TextAlignVertical.bottom,
                                 controller: _idController,
                                 keyboardType: TextInputType.text,
                                 decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(11)),
+                                      borderSide: BorderSide(
+                                          color: Color.fromARGB(
+                                              255, 233, 233, 233))),
+                                  filled: true,
+                                  fillColor: Color.fromARGB(255, 233, 233, 233),
                                   hintText: 'ID',
                                   hintStyle: TextStyle(
                                       fontSize: 13,
@@ -274,43 +324,32 @@ class _ProfileTapState extends State<ProfileTap> {
                                   return null;
                                 }),
                           ),
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 14),
                           Row(children: const [
-                            Text('설명',
+                            Text('  한 줄 소개',
                                 style: TextStyle(
-                                    fontSize: 17,
-                                    fontFamily: 'SDFText',
-                                    fontWeight: FontWeight.w700))
-                          ]),
-                          SizedBox(
-                            height: 30,
-                            child: TextFormField(
-                              controller: _explainController,
-                              keyboardType: TextInputType.text,
-                              decoration: const InputDecoration(
-                                hintText: 'Please enter your Explains',
-                                hintStyle: TextStyle(
-                                    fontSize: 13,
+                                    fontSize: 15,
                                     fontFamily: 'SFPro',
-                                    color: Colors.grey),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-                          Row(children: const [
-                            Text('전화번호',
-                                style: TextStyle(
-                                    fontSize: 17,
-                                    fontFamily: 'SDFText',
-                                    fontWeight: FontWeight.w700))
+                                    fontWeight: FontWeight.w600))
                           ]),
+                          const SizedBox(height: 7),
                           SizedBox(
                             height: 35,
                             child: TextFormField(
-                              controller: _telnumController,
-                              keyboardType: TextInputType.number,
+                              textAlignVertical: TextAlignVertical.bottom,
+                              controller: _explainController,
+                              keyboardType: TextInputType.text,
                               decoration: const InputDecoration(
-                                hintText: 'Enter Your Phone Number',
+                                border: InputBorder.none,
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(11)),
+                                    borderSide: BorderSide(
+                                        color: Color.fromARGB(
+                                            255, 233, 233, 233))),
+                                filled: true,
+                                fillColor: Color.fromARGB(255, 233, 233, 233),
+                                hintText: 'ID',
                                 hintStyle: TextStyle(
                                     fontSize: 13,
                                     fontFamily: 'SFPro',
@@ -318,21 +357,65 @@ class _ProfileTapState extends State<ProfileTap> {
                               ),
                             ),
                           ),
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 14),
                           Row(children: const [
-                            Text('이메일',
+                            Text('  전화번호',
                                 style: TextStyle(
-                                    fontSize: 17,
-                                    fontFamily: 'SDFText',
-                                    fontWeight: FontWeight.w700))
+                                    fontSize: 15,
+                                    fontFamily: 'SFPro',
+                                    fontWeight: FontWeight.w600))
                           ]),
+                          const SizedBox(height: 7),
                           SizedBox(
-                            height: 30,
+                            height: 35,
                             child: TextFormField(
+                              textAlignVertical: TextAlignVertical.bottom,
+                              controller: _telnumController,
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                border: InputBorder.none,
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(11)),
+                                    borderSide: BorderSide(
+                                        color: Color.fromARGB(
+                                            255, 233, 233, 233))),
+                                filled: true,
+                                fillColor: Color.fromARGB(255, 233, 233, 233),
+                                hintText: 'ID',
+                                hintStyle: TextStyle(
+                                    fontSize: 13,
+                                    fontFamily: 'SFPro',
+                                    color: Colors.grey),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 14),
+                          Row(children: const [
+                            Text('  이메일',
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: 'SFPro',
+                                    fontWeight: FontWeight.w600))
+                          ]),
+                          const SizedBox(height: 7),
+                          SizedBox(
+                            height: 35,
+                            child: TextFormField(
+                                textAlignVertical: TextAlignVertical.bottom,
                                 controller: _emailController,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: const InputDecoration(
-                                  hintText: 'Enter Your Email',
+                                  border: InputBorder.none,
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(11)),
+                                      borderSide: BorderSide(
+                                          color: Color.fromARGB(
+                                              255, 233, 233, 233))),
+                                  filled: true,
+                                  fillColor: Color.fromARGB(255, 233, 233, 233),
+                                  hintText: 'ID',
                                   hintStyle: TextStyle(
                                       fontSize: 13,
                                       fontFamily: 'SFPro',
@@ -344,6 +427,75 @@ class _ProfileTapState extends State<ProfileTap> {
                                   }
                                   return null;
                                 }),
+                          ),
+                          const SizedBox(height: 14),
+                          Row(children: const [
+                            Text('  소셜 서비스',
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: 'SFPro',
+                                    fontWeight: FontWeight.w600))
+                          ]),
+                          const SizedBox(height: 7),
+                          SizedBox(
+                            height: 35,
+                            child: TextFormField(
+                                textAlignVertical: TextAlignVertical.bottom,
+                                keyboardType: TextInputType.emailAddress,
+                                decoration: const InputDecoration(
+                                  prefixIcon: Icon(
+                                    TablerIcons.brand_instagram,
+                                    color: Color.fromARGB(255, 247, 113, 158),
+                                  ),
+                                  border: InputBorder.none,
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(11)),
+                                      borderSide: BorderSide(
+                                          color: Color.fromARGB(
+                                              255, 233, 233, 233))),
+                                  filled: true,
+                                  fillColor: Color.fromARGB(255, 233, 233, 233),
+                                  hintText: 'SNS 연동',
+                                  hintStyle: TextStyle(
+                                      fontSize: 13,
+                                      fontFamily: 'SFPro',
+                                      color: Colors.grey),
+                                )),
+                          ),
+                          const SizedBox(height: 14),
+                          Row(children: [
+                            Text('  ${userInfo!['userName']} 소개',
+                                style: const TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: 'SFPro',
+                                    fontWeight: FontWeight.w600))
+                          ]),
+                          const SizedBox(height: 7),
+                          Container(
+                            decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 233, 233, 233),
+                                borderRadius: BorderRadius.circular(22)),
+                            height: 300,
+                            child: TextFormField(
+                                textAlignVertical: TextAlignVertical.top,
+                                keyboardType: TextInputType.emailAddress,
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(11)),
+                                      borderSide: BorderSide(
+                                          color: Color.fromARGB(
+                                              255, 233, 233, 233))),
+                                  filled: true,
+                                  fillColor: Color.fromARGB(255, 233, 233, 233),
+                                  hintText: ' 😎  나의 소개로 피드를 꾸며보세요!',
+                                  hintStyle: TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: 'SFPro',
+                                      color: Colors.grey),
+                                )),
                           ),
                           const SizedBox(height: 30),
                         ],
@@ -394,50 +546,61 @@ class _ProfileTapState extends State<ProfileTap> {
                             children: [
                               SizedBox(
                                 child: GestureDetector(
-                                    onTap: () => showCupertinoModalPopup(
-                                        context: context,
-                                        builder: (context) =>
-                                            CupertinoActionSheet(
-                                              title: const Text("프로필 사진 설정"),
-                                              actions: [
-                                                CupertinoActionSheetAction(
-                                                    onPressed: () {
-                                                      Navigator.pop(context);
-                                                      uploadImage(
-                                                          ImageSource.gallery);
-                                                    },
-                                                    child: const Text(
-                                                        "엘범에서 사진 선택")),
-                                                CupertinoActionSheetAction(
-                                                    onPressed: () {
-                                                      Navigator.pop(context);
-                                                      uploadImage(
-                                                          ImageSource.camera);
-                                                    },
-                                                    child: const Text(
-                                                        "카메라로 찍어서 선택")),
-                                                CupertinoActionSheetAction(
-                                                    onPressed: () {
-                                                      Navigator.pop(context);
-                                                      changeToBasicImage();
-                                                    },
-                                                    child: const Text(
-                                                        "기본 이미지 선택")),
-                                              ],
-                                            )),
-                                    child: const Icon(TablerIcons.photo,
-                                        size: 25)),
+                                  onTap: () => showCupertinoModalPopup(
+                                      context: context,
+                                      builder: (context) =>
+                                          CupertinoActionSheet(
+                                            title: const Text("프로필 사진 설정"),
+                                            actions: [
+                                              CupertinoActionSheetAction(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                    uploadImage(
+                                                        ImageSource.gallery);
+                                                  },
+                                                  child:
+                                                      const Text("엘범에서 사진 선택")),
+                                              CupertinoActionSheetAction(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                    uploadImage(
+                                                        ImageSource.camera);
+                                                  },
+                                                  child: const Text(
+                                                      "카메라로 찍어서 선택")),
+                                              CupertinoActionSheetAction(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                    changeToBasicImage();
+                                                  },
+                                                  child:
+                                                      const Text("기본 이미지 선택")),
+                                            ],
+                                          )),
+                                  child: Row(
+                                    children: const [
+                                      Icon(TablerIcons.photo, size: 22),
+                                      Text('  프로필 사진 설정',
+                                          style: TextStyle(
+                                              fontFamily: 'SFProText',
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 13))
+                                    ],
+                                  ),
+                                ),
                               ),
                               SizedBox(
                                 child: GestureDetector(
                                     onTap: () =>
-                                        setState(() => EditProfile = true),
+                                        setState(() => editProfile = true),
                                     child: const Icon(TablerIcons.writing_sign,
                                         size: 25)),
                               ),
                             ],
                           ),
                         ),
+                        SizedBox(height: 10),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: const [
@@ -461,7 +624,8 @@ class _ProfileTapState extends State<ProfileTap> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  FlutterClipboard.copy(userInfo!['email'])
+                                  FlutterClipboard.copy(
+                                          userInfo!['telephoneNum'])
                                       // ignore: avoid_print
                                       .then((value) => print('Copied'));
                                 },

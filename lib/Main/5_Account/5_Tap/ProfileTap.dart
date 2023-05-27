@@ -112,9 +112,7 @@ class _ProfileTapState extends State<ProfileTap> {
     final ImagePicker picker = ImagePicker();
     XFile? imageFile = await picker.pickImage(
       source: imageSource,
-      maxHeight: 600,
-      maxWidth: 600,
-      imageQuality: 100,
+      imageQuality: 50,
     );
     if (imageFile != null) {
       pickedImage = File(imageFile.path);
@@ -514,9 +512,8 @@ class _ProfileTapState extends State<ProfileTap> {
       body: SafeArea(
         child: ScrollConfiguration(
           behavior: const ScrollBehavior().copyWith(overscroll: false),
-          child: ListView(children: [
+          child: ListView(physics: const BouncingScrollPhysics(), children: [
             Form(
-              key: _formKey,
               child: Column(
                 children: [
                   Container(
@@ -557,6 +554,9 @@ class _ProfileTapState extends State<ProfileTap> {
                                                     Navigator.pop(context);
                                                     uploadImage(
                                                         ImageSource.gallery);
+                                                    setState(() => NetworkImage(
+                                                        userInfo![
+                                                            'userProfile']));
                                                   },
                                                   child:
                                                       const Text("엘범에서 사진 선택")),
@@ -572,6 +572,9 @@ class _ProfileTapState extends State<ProfileTap> {
                                                   onPressed: () {
                                                     Navigator.pop(context);
                                                     changeToBasicImage();
+                                                    setState(() => myImage =
+                                                        NetworkImage(userInfo![
+                                                            'userProfile']));
                                                   },
                                                   child:
                                                       const Text("기본 이미지 선택")),
@@ -617,26 +620,34 @@ class _ProfileTapState extends State<ProfileTap> {
                           ],
                         ),
                         Container(
-                          padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
+                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                           height: 40,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              const Icon(TablerIcons.phone, size: 22),
-                              const VerticalDivider(
-                                color: Colors.black,
-                                width: 7,
-                                thickness: 1.5,
-                                indent: 11,
-                                endIndent: 11,
+                              const Icon(
+                                TablerIcons.phone,
+                                size: 22,
+                                color: Colors.grey,
                               ),
-                              Icon(TablerIcons.mail_opened, size: 20),
                               const VerticalDivider(
                                 color: Colors.black,
                                 width: 7,
                                 thickness: 1.5,
-                                indent: 11,
-                                endIndent: 11,
+                                indent: 9,
+                                endIndent: 9,
+                              ),
+                              const Icon(
+                                TablerIcons.mail_opened,
+                                size: 20,
+                                color: Colors.grey,
+                              ),
+                              const VerticalDivider(
+                                color: Colors.black,
+                                width: 7,
+                                thickness: 1.5,
+                                indent: 9,
+                                endIndent: 9,
                               ),
                               GestureDetector(
                                 onTap: () {
@@ -650,8 +661,8 @@ class _ProfileTapState extends State<ProfileTap> {
                                 color: Colors.black,
                                 width: 7,
                                 thickness: 1.5,
-                                indent: 11,
-                                endIndent: 11,
+                                indent: 9,
+                                endIndent: 9,
                               ),
                               const Icon(TablerIcons.brand_telegram, size: 22)
                             ],
@@ -717,6 +728,21 @@ class _ProfileTapState extends State<ProfileTap> {
                               style: const TextStyle(
                                 fontFamily: 'SFProDisplay',
                                 fontWeight: FontWeight.w400,
+                                fontSize: 15,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 15),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              '${userInfo!['userName']} 소개',
+                              style: const TextStyle(
+                                fontFamily: 'SFProDisplay',
+                                fontWeight: FontWeight.w600,
                                 fontSize: 15,
                                 color: Colors.black,
                               ),

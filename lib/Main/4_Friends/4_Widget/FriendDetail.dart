@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 
 import 'package:tabler_icons/tabler_icons.dart';
 import 'package:clipboard/clipboard.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import 'package:flutter/services.dart'; //Haptic Feedback
 
@@ -165,7 +168,14 @@ class _FriendDetailState extends State<FriendDetail> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () async {
+                                  Uri telephoneURL = Uri.parse(
+                                      'tel:${widget.userInfo['telephoneNum']}');
+                                  if (await launchUrl(telephoneURL)) {
+                                  } else {
+                                    Get.snackbar("오류 발생", "전화 연결 불가");
+                                  }
+                                },
                                 child: const Icon(TablerIcons.phone, size: 22),
                               ),
                               const VerticalDivider(

@@ -160,7 +160,7 @@ class _FriendDetailState extends State<FriendDetail> {
                           ],
                         ),
                         Container(
-                          padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
+                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                           height: 40,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -180,8 +180,8 @@ class _FriendDetailState extends State<FriendDetail> {
                                 color: Colors.black,
                                 width: 7,
                                 thickness: 1.5,
-                                indent: 11,
-                                endIndent: 11,
+                                indent: 9,
+                                endIndent: 9,
                               ),
                               GestureDetector(
                                 onTap: () {
@@ -197,8 +197,8 @@ class _FriendDetailState extends State<FriendDetail> {
                                 color: Colors.black,
                                 width: 7,
                                 thickness: 1.5,
-                                indent: 11,
-                                endIndent: 11,
+                                indent: 9,
+                                endIndent: 9,
                               ),
                               GestureDetector(
                                 onTap: () {},
@@ -209,8 +209,8 @@ class _FriendDetailState extends State<FriendDetail> {
                                 color: Colors.black,
                                 width: 7,
                                 thickness: 1.5,
-                                indent: 11,
-                                endIndent: 11,
+                                indent: 9,
+                                endIndent: 9,
                               ),
                               const Icon(TablerIcons.brand_telegram, size: 22)
                             ],

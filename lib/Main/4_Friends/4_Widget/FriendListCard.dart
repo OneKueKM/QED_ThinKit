@@ -6,6 +6,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:qed_app_thinkit/Main/4_Friends/4_Widget/FriendDetail.dart';
 import 'package:tabler_icons/tabler_icons.dart';
 
+import 'package:flutter/services.dart';
+import 'package:page_transition/page_transition.dart';
+
 class FriendListCard extends StatelessWidget {
   QueryDocumentSnapshot<Map<String, dynamic>> friendInfo;
 
@@ -93,10 +96,28 @@ class FriendListCard extends StatelessWidget {
                   height: 5,
                 ),
                 GestureDetector(
-                  onTap: () => showDialog(
-                      context: context,
-                      builder: (context) => FriendDetail(
-                          userInfo: friendData, myUserInfo: friendInfo)),
+                  onTap: () {
+                    SystemChrome.setEnabledSystemUIMode(
+                      SystemUiMode.manual,
+                      overlays: [SystemUiOverlay.bottom],
+                    );
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        child: FriendDetail(
+                          userInfo: friendData,
+                          myUserInfo: friendInfo,
+                        ),
+                      ),
+                    ).then((value) {
+                      SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+                          overlays: [
+                            SystemUiOverlay.bottom,
+                            SystemUiOverlay.top
+                          ]);
+                    });
+                  },
                   child: Container(
                     color: Colors.white,
                     child: Column(

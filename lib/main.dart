@@ -21,7 +21,7 @@ void main() async {
   runApp(const ThinKit());
 }
 
-String version = '6.0.1';
+String version = 'Provided by GitHub';
 
 class ThinKit extends StatelessWidget {
   static final ValueNotifier<ThemeMode> themeNotifier =

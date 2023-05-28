@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../4_Widget/FriendListWidget.dart';
+import '../4_Widget/FriendList.dart';
 import 'ReqSender.dart';
 
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
@@ -137,7 +137,7 @@ class _ReqManagerState extends State<ReqManager> {
                         ),
                       ),
                       const SizedBox(height: 5),
-                      FriendListWidget(
+                      FriendList(
                         friendRefList: myData!['friendRequested'] ?? [],
                         requested: true,
                       ),
@@ -161,7 +161,7 @@ class _ReqManagerState extends State<ReqManager> {
                         ),
                       ),
                       const SizedBox(height: 5),
-                      FriendListWidget(
+                      FriendList(
                         friendRefList: myData['friendRequesting'] ?? [],
                         requesting: true,
                       ),

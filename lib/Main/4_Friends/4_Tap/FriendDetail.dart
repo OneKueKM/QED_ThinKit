@@ -122,7 +122,18 @@ class _FriendDetailState extends State<FriendDetail> {
                           ),
                         SizedBox(
                             child: GestureDetector(
-                          onTap: () {},
+                          onTap: () async {
+                            return showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                      title: const Text('진짜 삭제할거야?'),
+                                      content: GestureDetector(
+                                        onTap: null,
+                                        child: const Text('임시'),
+                                      ));
+                                });
+                          },
                           child: SizedBox(
                             height: 25,
                             child: Row(
@@ -222,9 +233,9 @@ class _FriendDetailState extends State<FriendDetail> {
                             thickness: 1),
                         const SizedBox(height: 10),
                         Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const [
-                            Text(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            const Text(
                               '이름',
                               style: TextStyle(
                                 fontFamily: 'SFProDisplay',
@@ -233,6 +244,42 @@ class _FriendDetailState extends State<FriendDetail> {
                                 color: Colors.black,
                               ),
                             ),
+                            const SizedBox(width: 5),
+                            GestureDetector(
+                              onTap: () async {
+                                return showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: const Text('이름 바꾸기'),
+                                        content: TextField(
+                                          autofocus: true,
+                                          controller: TextEditingController(
+                                              text: widget.myUserInfo['name']),
+                                          onSubmitted: (String text) {
+                                            widget.myUserInfo.reference
+                                                .update({'name': text});
+                                            if (!mounted) return;
+                                            Navigator.pop(context);
+                                          },
+                                          textInputAction: TextInputAction.send,
+                                        ),
+                                      );
+                                    });
+                              },
+                              child: SizedBox(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const [
+                                    Icon(
+                                      TablerIcons.writing_sign,
+                                      size: 18,
+                                      color: Color.fromARGB(255, 100, 100, 100),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
                           ],
                         ),
                         const SizedBox(height: 5),
@@ -253,7 +300,7 @@ class _FriendDetailState extends State<FriendDetail> {
                         ),
                         const SizedBox(height: 15),
                         Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: const [
                             Text(
                               '한 줄 소개',

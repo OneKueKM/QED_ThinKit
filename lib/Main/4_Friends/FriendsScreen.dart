@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:qed_app_thinkit/Main/4_Friends/4_Tap/ReqManager.dart';
-import 'package:qed_app_thinkit/Main/4_Friends/4_Widget/BestFriend.dart';
+import 'package:qed_app_thinkit/Main/4_Friends/4_Widget/BestFriendList.dart';
 import 'package:qed_app_thinkit/Main/4_Friends/4_Widget/SearchBar.dart' as qed;
 
 import 'package:page_transition/page_transition.dart';
@@ -108,7 +108,7 @@ class _MyAppState extends State<ThirdScreen> {
                   return Container(
                     margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
                     height: 80,
-                    child: BestFriend(
+                    child: BestFriendList(
                       bfList: snapshot.data!.docs,
                     ),
                   );

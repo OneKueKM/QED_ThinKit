@@ -13,21 +13,18 @@ class LightDarkMode extends StatefulWidget {
 class _LightDarkModeState extends State<LightDarkMode> {
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-        splashColor: Colors.transparent, // 터치 효과의 색상을 투명으로 설정
-        highlightColor: Colors.transparent, // 터치 효과의 하이라이트 색상을 투명으로 설정
-        enableFeedback: false,
-        onTap: () {
-          // 클릭 이벤트 처리
-        },
+    return Theme(
+        data: ThemeData(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent),
         child: AnimatedIconButton(
           duration: const Duration(milliseconds: 500),
-          onPressed: () => print('all icons pressed'),
+          onPressed: () => print('Dark Mode'),
           icons: [
             AnimatedIconItem(
               icon: const Icon(TablerIcons.moon_filled,
                   color: Color.fromARGB(255, 195, 195, 195), size: 24),
-              onPressed: () => print('add pressed'),
+              onPressed: () => print('Light Mode'),
             ),
             const AnimatedIconItem(
               icon: Icon(TablerIcons.sun_filled,

@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../4_Widget/FriendListWidget.dart';
-import 'SendReq.dart';
+import 'ReqSender.dart';
 
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 
@@ -114,7 +114,7 @@ class _ReqManagerState extends State<ReqManager> {
               var myData = snapshot.data?.data();
               if (isAddFriends) {
                 return Expanded(
-                  child: SendReq(
+                  child: ReqSender(
                     friendRequested: myData!['friendRequested'] ?? [],
                     friendRequesting: myData['friendRequesting'] ?? [],
                   ),

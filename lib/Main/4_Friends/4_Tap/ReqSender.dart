@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class SendReq extends StatefulWidget {
-  SendReq(
+class ReqSender extends StatefulWidget {
+  ReqSender(
       {Key? key, required this.friendRequesting, required this.friendRequested})
       : super(key: key);
   List<dynamic> friendRequested;
   List<dynamic> friendRequesting;
 
   @override
-  State<SendReq> createState() => _SendReqState();
+  State<ReqSender> createState() => _ReqSenderState();
 }
 
-class _SendReqState extends State<SendReq> {
+class _ReqSenderState extends State<ReqSender> {
   final User? me = FirebaseAuth.instance.currentUser;
   final TextEditingController idController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();

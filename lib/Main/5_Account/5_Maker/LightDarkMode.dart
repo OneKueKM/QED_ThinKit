@@ -25,11 +25,13 @@ class _LightDarkModeState extends State<LightDarkMode> {
           onPressed: () => print('all icons pressed'),
           icons: [
             AnimatedIconItem(
-              icon: Icon(TablerIcons.moon_filled, color: Colors.grey, size: 24),
+              icon: const Icon(TablerIcons.moon_filled,
+                  color: Color.fromARGB(255, 195, 195, 195), size: 24),
               onPressed: () => print('add pressed'),
             ),
-            AnimatedIconItem(
-              icon: Icon(TablerIcons.sun_filled, color: Colors.grey, size: 24),
+            const AnimatedIconItem(
+              icon: Icon(TablerIcons.sun_filled,
+                  color: Color.fromARGB(255, 195, 195, 195), size: 24),
             ),
           ],
         ));

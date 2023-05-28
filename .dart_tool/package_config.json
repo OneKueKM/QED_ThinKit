@@ -8,6 +8,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "animated_icon_button",
+      "rootUri": "file:///Users/kmin/.pub-cache/hosted/pub.dev/animated_icon_button-1.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "animated_toggle_switch",
       "rootUri": "file:///Users/kmin/.pub-cache/hosted/pub.dev/animated_toggle_switch-0.6.2",
       "packageUri": "lib/",
@@ -224,6 +230,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "freezed_annotation",
+      "rootUri": "file:///Users/kmin/.pub-cache/hosted/pub.dev/freezed_annotation-2.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "geolocator",
       "rootUri": "file:///Users/kmin/.pub-cache/hosted/pub.dev/geolocator-9.0.2",
       "packageUri": "lib/",
@@ -354,6 +366,12 @@
       "rootUri": "file:///Users/kmin/.pub-cache/hosted/pub.dev/js-0.6.5",
       "packageUri": "lib/",
       "languageVersion": "2.16"
+    },
+    {
+      "name": "json_annotation",
+      "rootUri": "file:///Users/kmin/.pub-cache/hosted/pub.dev/json_annotation-4.8.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
     },
     {
       "name": "lints",
@@ -566,7 +584,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-05-26T12:17:53.973114Z",
+  "generated": "2023-05-28T05:38:54.721948Z",
   "generator": "pub",
   "generatorVersion": "2.19.5"
 }

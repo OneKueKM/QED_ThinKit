@@ -107,7 +107,9 @@ class _ReqManagerState extends State<ReqManager> {
             stream: userDocRef.snapshots(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator();
+                return const CircularProgressIndicator(
+                  color: Colors.white,
+                );
               }
               var myData = snapshot.data?.data();
               if (isAddFriends) {

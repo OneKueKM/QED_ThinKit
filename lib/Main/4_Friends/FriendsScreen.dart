@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:qed_app_thinkit/Main/4_Friends/4_Tap/FriendAddingScreen.dart';
-import 'package:qed_app_thinkit/Main/4_Friends/4_Widget/BestFriendListWidget.dart';
+import 'package:qed_app_thinkit/Main/4_Friends/4_Tap/ReqManager.dart';
+import 'package:qed_app_thinkit/Main/4_Friends/4_Widget/BestFriend.dart';
 import 'package:qed_app_thinkit/Main/4_Friends/4_Widget/SearchBar.dart' as qed;
 
 import 'package:page_transition/page_transition.dart';
 
 import 'package:tabler_icons/tabler_icons.dart';
-import '4_Widget/FriendListCard.dart';
+import '4_Maker/FriendCard.dart';
 
 class ThirdScreen extends StatefulWidget {
   const ThirdScreen({super.key});
@@ -59,16 +59,16 @@ class _MyAppState extends State<ThirdScreen> {
         actions: <Widget>[
           IconButton(
             icon: const Icon(
-              TablerIcons.tools,
+              TablerIcons.arrows_exchange_2,
               color: Colors.black,
-              size: 25,
+              size: 22,
             ),
             onPressed: () => {
               Navigator.push(
                   context,
                   PageTransition(
                       type: PageTransitionType.rightToLeft,
-                      child: const FriendAddingScreen()))
+                      child: const ReqManager()))
             },
           ),
         ],
@@ -108,7 +108,7 @@ class _MyAppState extends State<ThirdScreen> {
                   return Container(
                     margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
                     height: 80,
-                    child: BestFriendListWidget(
+                    child: BestFriend(
                       bfList: snapshot.data!.docs,
                     ),
                   );
@@ -148,7 +148,7 @@ class _MyAppState extends State<ThirdScreen> {
                         itemBuilder: (BuildContext context, int index) {
                           var friend = friendList[index];
 
-                          return FriendListCard(
+                          return FriendCard(
                             friendInfo: friend,
                           );
                         });

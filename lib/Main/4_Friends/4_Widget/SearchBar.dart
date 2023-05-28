@@ -4,7 +4,7 @@ import 'package:tabler_icons/tabler_icons.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'FriendListCard.dart';
+import '../4_Maker/FriendCard.dart';
 
 class SearchBar extends StatefulWidget {
   const SearchBar({Key? key}) : super(key: key);
@@ -141,7 +141,7 @@ class _SearchBarState extends State<SearchBar> {
               shrinkWrap: true,
               itemCount: result.length,
               itemBuilder: (BuildContext context, int index) {
-                return FriendListCard(
+                return FriendCard(
                   friendInfo: result[index],
                 );
               },

@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import '../4_Widget/FriendReqCard.dart';
-import 'FriendListCard.dart';
+import '../4_Maker/FriendReqCard.dart';
+import '../4_Maker/FriendCard.dart';
 
 class FriendListWidget extends StatefulWidget {
   List<dynamic> friendRefList;

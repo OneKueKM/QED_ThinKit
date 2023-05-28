@@ -6,7 +6,7 @@ import 'package:qed_app_thinkit/Main/1_Room/1_Team/1_Team_Tap/1_Team_Tap_Schedul
 import 'package:qed_app_thinkit/Main/1_Room/1_Team/1_Team_Tap/TeamTap.dart';
 
 import 'package:qed_app_thinkit/Main/2_Calendar/2_Widget/Calendar.dart';
-import 'package:qed_app_thinkit/Main/2_Calendar/2_Maker/CalendarScheduleCard.dart';
+import 'package:qed_app_thinkit/Main/2_Calendar/2_Maker/ScheduleCard.dart';
 import 'package:qed_app_thinkit/BasicWidgets/ScheduleDateTimeToStr.dart';
 
 import 'package:tabler_icons/tabler_icons.dart';
@@ -230,7 +230,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                           .toDate()
                                           .compareTo(endOfDay) <=
                                       0) {
-                                return CalendarScheduleCard(
+                                return ScheduleCard(
                                   title: myScheduleList[index]['title'],
                                   subtitle:
                                       myScheduleList[index]['location'] == ''
@@ -299,7 +299,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                           .toDate()
                                           .compareTo(endOfDay) >
                                       0) {
-                                return CalendarScheduleCard(
+                                return ScheduleCard(
                                   title: myScheduleList[index]['title'],
                                   subtitle:
                                       myScheduleList[index]['location'] == ''
@@ -366,7 +366,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                           .toDate()
                                           .compareTo(endOfDay) >
                                       0) {
-                                return CalendarScheduleCard(
+                                return ScheduleCard(
                                   title: myScheduleList[index]['title'],
                                   subtitle:
                                       myScheduleList[index]['location'] == ''
@@ -436,7 +436,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                           .toDate()
                                           .compareTo(startOfDay) <
                                       0) {
-                                return CalendarScheduleCard(
+                                return ScheduleCard(
                                   title: myScheduleList[index]['title'],
                                   subtitle:
                                       myScheduleList[index]['location'] == ''

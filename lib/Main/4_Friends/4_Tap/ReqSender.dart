@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import 'package:tabler_icons/tabler_icons.dart';
+
 class ReqSender extends StatefulWidget {
   ReqSender(
       {Key? key, required this.friendRequesting, required this.friendRequested})

@@ -44,7 +44,7 @@ class _MyPageState extends State<MyPage> {
             .maybePop());
       },
       child: Scaffold(
-        body: (currentIndex == 3 || currentIndex == 4)
+        body: (currentIndex == 0 || currentIndex == 3 || currentIndex == 4)
             ? screens[currentIndex]
             : Navigator(
                 key: _navigatorKeyList[currentIndex],

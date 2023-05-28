@@ -12,7 +12,6 @@ import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:tabler_icons/tabler_icons.dart';
 import 'package:page_transition/page_transition.dart';
 
 class AccountScreen extends StatefulWidget {

@@ -92,7 +92,7 @@ class _TimelineState extends State<Timeline> {
             const SizedBox(height: 15),
             Container(
                 width: double.infinity,
-                height: 146,
+                height: 144,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15),
@@ -109,12 +109,12 @@ class _TimelineState extends State<Timeline> {
                   child: Column(
                     children: [
                       SizedBox(
-                          height: 25,
+                          height: 22,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: const [
-                              Text('VC 보고서 준비',
+                              Text('버크셔 해서웨이 주주총회',
                                   style: TextStyle(
                                       fontFamily: 'SFProText',
                                       color: Colors.black,
@@ -140,7 +140,7 @@ class _TimelineState extends State<Timeline> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: const [
-                            Text('오후 6시  /  사무실',
+                            Text('오후 06:00  /  버크셔 해서웨이 본사',
                                 style: TextStyle(
                                     fontFamily: 'SFProText',
                                     color: Colors.black,
@@ -149,13 +149,13 @@ class _TimelineState extends State<Timeline> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 1),
+                      const SizedBox(height: 2),
                       SizedBox(
                         height: 20,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: const [
-                            Text('경영 전략 평가 중심으로 편성',
+                            Text('워렌버핏 형님 나오신다',
                                 style: TextStyle(
                                     fontFamily: 'SFProText',
                                     color: Colors.black,

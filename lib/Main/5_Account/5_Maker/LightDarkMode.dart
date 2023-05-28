@@ -23,12 +23,12 @@ class _LightDarkModeState extends State<LightDarkMode> {
           icons: [
             AnimatedIconItem(
               icon: const Icon(TablerIcons.moon_filled,
-                  color: Color.fromARGB(255, 195, 195, 195), size: 24),
+                  color: Color.fromARGB(255, 195, 195, 195), size: 22),
               onPressed: () => print('Light Mode'),
             ),
             const AnimatedIconItem(
               icon: Icon(TablerIcons.sun_filled,
-                  color: Color.fromARGB(255, 195, 195, 195), size: 24),
+                  color: Color.fromARGB(255, 195, 195, 195), size: 22),
             ),
           ],
         ));

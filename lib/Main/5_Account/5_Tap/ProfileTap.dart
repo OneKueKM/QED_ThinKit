@@ -508,257 +508,269 @@ class _ProfileTapState extends State<ProfileTap> {
       );
     }
 
-    return Scaffold(
-      body: SafeArea(
-        child: ScrollConfiguration(
-          behavior: const ScrollBehavior().copyWith(overscroll: false),
-          child: ListView(physics: const BouncingScrollPhysics(), children: [
-            Form(
-              child: Column(
-                children: [
-                  Container(
-                    height: 350,
-                    width: double.maxFinite,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            fit: BoxFit.fitWidth,
-                            image: NetworkImage(userInfo!['userProfile']))),
-                  ),
-                  const SizedBox(height: 10),
-                  Container(
-                    height: 4,
-                    width: 40,
-                    decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 222, 222, 222),
-                        borderRadius: BorderRadius.all(Radius.circular(40))),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 50,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                child: GestureDetector(
-                                  onTap: () => showCupertinoModalPopup(
-                                      context: context,
-                                      builder: (context) =>
-                                          CupertinoActionSheet(
-                                            title: const Text("프로필 사진 설정"),
-                                            actions: [
-                                              CupertinoActionSheetAction(
-                                                  onPressed: () {
-                                                    Navigator.pop(context);
-                                                    uploadImage(
-                                                        ImageSource.gallery);
-                                                    setState(() => NetworkImage(
-                                                        userInfo![
-                                                            'userProfile']));
-                                                  },
-                                                  child:
-                                                      const Text("엘범에서 사진 선택")),
-                                              CupertinoActionSheetAction(
-                                                  onPressed: () {
-                                                    Navigator.pop(context);
-                                                    uploadImage(
-                                                        ImageSource.camera);
-                                                  },
-                                                  child: const Text(
-                                                      "카메라로 찍어서 선택")),
-                                              CupertinoActionSheetAction(
-                                                  onPressed: () {
-                                                    Navigator.pop(context);
-                                                    changeToBasicImage();
-                                                    setState(() => myImage =
-                                                        NetworkImage(userInfo![
-                                                            'userProfile']));
-                                                  },
-                                                  child:
-                                                      const Text("기본 이미지 선택")),
-                                            ],
-                                          )),
-                                  child: Row(
-                                    children: const [
-                                      Icon(TablerIcons.photo, size: 22),
-                                      Text('  프로필 사진 설정',
-                                          style: TextStyle(
-                                              fontFamily: 'SFProText',
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 13))
-                                    ],
+    return GestureDetector(
+        onVerticalDragUpdate: (details) {
+          if (details.delta.dy > 0) {
+            Navigator.pop(context);
+          }
+        },
+        child: Scaffold(
+          body: SafeArea(
+            child: ScrollConfiguration(
+              behavior: const ScrollBehavior().copyWith(overscroll: false),
+              child: ListView(children: [
+                Form(
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 350,
+                        width: double.maxFinite,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                fit: BoxFit.fitWidth,
+                                image: NetworkImage(userInfo!['userProfile']))),
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                        height: 4,
+                        width: 40,
+                        decoration: const BoxDecoration(
+                            color: Color.fromARGB(255, 222, 222, 222),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(40))),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 50,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                    child: GestureDetector(
+                                      onTap: () => showCupertinoModalPopup(
+                                          context: context,
+                                          builder: (context) =>
+                                              CupertinoActionSheet(
+                                                title: const Text("프로필 사진 설정"),
+                                                actions: [
+                                                  CupertinoActionSheetAction(
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                        uploadImage(ImageSource
+                                                            .gallery);
+                                                        setState(() =>
+                                                            NetworkImage(userInfo![
+                                                                'userProfile']));
+                                                      },
+                                                      child: const Text(
+                                                          "엘범에서 사진 선택")),
+                                                  CupertinoActionSheetAction(
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                        uploadImage(
+                                                            ImageSource.camera);
+                                                      },
+                                                      child: const Text(
+                                                          "카메라로 찍어서 선택")),
+                                                  CupertinoActionSheetAction(
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                        changeToBasicImage();
+                                                        setState(() => myImage =
+                                                            NetworkImage(userInfo![
+                                                                'userProfile']));
+                                                      },
+                                                      child: const Text(
+                                                          "기본 이미지 선택")),
+                                                ],
+                                              )),
+                                      child: Row(
+                                        children: const [
+                                          Icon(TablerIcons.photo, size: 22),
+                                          Text('  프로필 사진 설정',
+                                              style: TextStyle(
+                                                  fontFamily: 'SFProText',
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 13))
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    child: GestureDetector(
+                                        onTap: () =>
+                                            setState(() => editProfile = true),
+                                        child: const Icon(
+                                            TablerIcons.writing_sign,
+                                            size: 25)),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text(
+                                  'Contact',
+                                  style: TextStyle(
+                                    fontFamily: 'SFProDisplay',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 15,
+                                    color: Colors.black,
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                child: GestureDetector(
-                                    onTap: () =>
-                                        setState(() => editProfile = true),
-                                    child: const Icon(TablerIcons.writing_sign,
-                                        size: 25)),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              'Contact',
-                              style: TextStyle(
-                                fontFamily: 'SFProDisplay',
-                                fontWeight: FontWeight.w600,
-                                fontSize: 15,
-                                color: Colors.black,
+                                SizedBox(height: 10),
+                              ],
+                            ),
+                            Container(
+                              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                              height: 40,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  const Icon(
+                                    TablerIcons.phone,
+                                    size: 22,
+                                    color: Colors.grey,
+                                  ),
+                                  const VerticalDivider(
+                                    color: Colors.black,
+                                    width: 7,
+                                    thickness: 1.5,
+                                    indent: 9,
+                                    endIndent: 9,
+                                  ),
+                                  const Icon(
+                                    TablerIcons.mail_opened,
+                                    size: 20,
+                                    color: Colors.grey,
+                                  ),
+                                  const VerticalDivider(
+                                    color: Colors.black,
+                                    width: 7,
+                                    thickness: 1.5,
+                                    indent: 9,
+                                    endIndent: 9,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      launchUrl(Uri.parse(
+                                          'https://www.instagram.com/kminforgood/'));
+                                    },
+                                    child: const Icon(
+                                        TablerIcons.brand_instagram,
+                                        size: 22),
+                                  ),
+                                  const VerticalDivider(
+                                    color: Colors.black,
+                                    width: 7,
+                                    thickness: 1.5,
+                                    indent: 9,
+                                    endIndent: 9,
+                                  ),
+                                  const Icon(TablerIcons.brand_telegram,
+                                      size: 22)
+                                ],
                               ),
                             ),
-                            SizedBox(height: 10),
-                          ],
-                        ),
-                        Container(
-                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                          height: 40,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              const Icon(
-                                TablerIcons.phone,
-                                size: 22,
-                                color: Colors.grey,
-                              ),
-                              const VerticalDivider(
-                                color: Colors.black,
-                                width: 7,
-                                thickness: 1.5,
-                                indent: 9,
-                                endIndent: 9,
-                              ),
-                              const Icon(
-                                TablerIcons.mail_opened,
-                                size: 20,
-                                color: Colors.grey,
-                              ),
-                              const VerticalDivider(
-                                color: Colors.black,
-                                width: 7,
-                                thickness: 1.5,
-                                indent: 9,
-                                endIndent: 9,
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  launchUrl(Uri.parse(
-                                      'https://www.instagram.com/kminforgood/'));
-                                },
-                                child: const Icon(TablerIcons.brand_instagram,
-                                    size: 22),
-                              ),
-                              const VerticalDivider(
-                                color: Colors.black,
-                                width: 7,
-                                thickness: 1.5,
-                                indent: 9,
-                                endIndent: 9,
-                              ),
-                              const Icon(TablerIcons.brand_telegram, size: 22)
-                            ],
-                          ),
-                        ),
-                        const Divider(
-                            height: 30,
-                            color: Color.fromARGB(255, 188, 188, 188),
-                            thickness: 1),
-                        const SizedBox(height: 10),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const [
-                            Text(
-                              '이름',
-                              style: TextStyle(
-                                fontFamily: 'SFProDisplay',
-                                fontWeight: FontWeight.w600,
-                                fontSize: 15,
-                                color: Colors.black,
-                              ),
+                            const Divider(
+                                height: 30,
+                                color: Color.fromARGB(255, 188, 188, 188),
+                                thickness: 1),
+                            const SizedBox(height: 10),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const [
+                                Text(
+                                  '이름',
+                                  style: TextStyle(
+                                    fontFamily: 'SFProDisplay',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        const SizedBox(height: 5),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const SizedBox(width: 15),
-                            Text(
-                              userInfo!['userName'],
-                              style: const TextStyle(
-                                fontFamily: 'SFProDisplay',
-                                fontWeight: FontWeight.w400,
-                                fontSize: 15,
-                                color: Colors.black,
-                              ),
+                            const SizedBox(height: 5),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const SizedBox(width: 15),
+                                Text(
+                                  userInfo!['userName'],
+                                  style: const TextStyle(
+                                    fontFamily: 'SFProDisplay',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        const SizedBox(height: 15),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const [
-                            Text(
-                              '한 줄 소개',
-                              style: TextStyle(
-                                fontFamily: 'SFProDisplay',
-                                fontWeight: FontWeight.w600,
-                                fontSize: 15,
-                                color: Colors.black,
-                              ),
+                            const SizedBox(height: 15),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const [
+                                Text(
+                                  '한 줄 소개',
+                                  style: TextStyle(
+                                    fontFamily: 'SFProDisplay',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        const SizedBox(height: 5),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const SizedBox(width: 15),
-                            Text(
-                              userInfo!['userExplain'],
-                              style: const TextStyle(
-                                fontFamily: 'SFProDisplay',
-                                fontWeight: FontWeight.w400,
-                                fontSize: 15,
-                                color: Colors.black,
-                              ),
+                            const SizedBox(height: 5),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const SizedBox(width: 15),
+                                Text(
+                                  userInfo!['userExplain'],
+                                  style: const TextStyle(
+                                    fontFamily: 'SFProDisplay',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        const SizedBox(height: 15),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              '${userInfo!['userName']} 소개',
-                              style: const TextStyle(
-                                fontFamily: 'SFProDisplay',
-                                fontWeight: FontWeight.w600,
-                                fontSize: 15,
-                                color: Colors.black,
-                              ),
+                            const SizedBox(height: 15),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const [
+                                Text(
+                                  'Read Me !',
+                                  style: TextStyle(
+                                    fontFamily: 'SFProDisplay',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
                             ),
+                            const SizedBox(height: 10),
                           ],
                         ),
-                        const SizedBox(height: 10),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            )
-          ]),
-        ),
-      ),
-    );
+                      )
+                    ],
+                  ),
+                )
+              ]),
+            ),
+          ),
+        ));
   }
 }

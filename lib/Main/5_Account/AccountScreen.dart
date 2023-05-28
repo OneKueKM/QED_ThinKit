@@ -5,6 +5,7 @@ import 'package:qed_app_thinkit/Main/5_Account/5_Widget/ActionRow.dart';
 import 'package:qed_app_thinkit/Main/5_Account/5_Tap/ProfileTap.dart';
 import 'package:qed_app_thinkit/Main/5_Account/5_Widget/AsKakaoAds.dart';
 import 'package:qed_app_thinkit/Main/5_Account/5_Widget/Explains.dart';
+import 'package:qed_app_thinkit/Main/5_Account/5_Maker/LightDarkMode.dart';
 
 import 'package:flutter/services.dart';
 
@@ -81,14 +82,7 @@ class _MyAppState extends State<AccountScreen> {
                         ],
                       );
                     }),
-                actions: [
-                  IconButton(
-                    icon: const Icon(TablerIcons.moon_stars),
-                    color: Colors.black,
-                    iconSize: 22,
-                    onPressed: () {},
-                  ),
-                ],
+                actions: const [LightDarkMode()],
               ),
               body: ScrollConfiguration(
                   behavior: const ScrollBehavior().copyWith(overscroll: false),

@@ -82,13 +82,13 @@ class ScheduleCard extends StatelessWidget {
                       SizedBox(
                         height: 20,
                         child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             const SizedBox(
                               width: 20,
                               child: Icon(
                                 TablerIcons.clock_hour_10,
-                                size: 20,
+                                size: 18,
                               ),
                             ),
                             const SizedBox(width: 5),
@@ -105,13 +105,13 @@ class ScheduleCard extends StatelessWidget {
                       SizedBox(
                         height: 20,
                         child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: const [
                             SizedBox(
                               width: 20,
                               child: Icon(
                                 TablerIcons.map_pin,
-                                size: 20,
+                                size: 18,
                               ),
                             ),
                             SizedBox(width: 5),
@@ -128,13 +128,13 @@ class ScheduleCard extends StatelessWidget {
                       SizedBox(
                         height: 20,
                         child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: const [
                             SizedBox(
                               width: 20,
                               child: Icon(
                                 TablerIcons.note,
-                                size: 20,
+                                size: 18,
                               ),
                             ),
                             SizedBox(width: 5),
